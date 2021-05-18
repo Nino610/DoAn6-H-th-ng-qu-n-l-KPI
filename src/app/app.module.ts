@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ManagerComponent } from './main/admin/manager/manager.component';
@@ -17,6 +18,10 @@ import { AdminComponent } from './main/admin/admin.component';
 import { StaffComponent } from './main/staff/staff.component';
 import { AdminModule } from './main/admin/admin.module';
 import { StaffModule } from './main/staff/staff.module';
+import { LineComponent } from './main/admin/chart/line/line.component';
+import { PieComponent } from './main/admin/chart/pie/pie.component';
+import { GroupKPIComponent } from './main/admin/group-kpi/group-kpi.component';
+import { GroupkpiService } from './services/groupkpi.service';
 const routes: Routes = [
   {
     path: '',
@@ -46,7 +51,6 @@ const routes: Routes = [
     SidebarComponent,
     NavbarComponent,
     FooterComponent,
-    ManagerComponent,
     SumDataComponent,
     TargetListComponent,
     ProgressListComponent,
@@ -55,12 +59,15 @@ const routes: Routes = [
     UnpageComponent,
     AdminComponent,
     StaffComponent,
+    LineComponent,
+    PieComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     AdminModule,
     StaffModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

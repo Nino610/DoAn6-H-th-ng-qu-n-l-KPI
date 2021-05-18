@@ -19,17 +19,6 @@
             </div>
         </div>
 
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-      <i class="fas fa-search fa-fw"></i>
-    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -49,6 +38,12 @@
                             <a href="./index.html" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thông tin chỉ tiêu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/admin/groupKPI']" routerLinkActive="selected" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nhóm chỉ tiêu</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -115,19 +110,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a [routerLink]="['/chart/pie']" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Hình tròn</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a [routerLink]="['/chart/pie']" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Hình bánh</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/inline.html" class="nav-link">
+                            <a [routerLink]="['/chart/line']" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Hình sóng</p>
                             </a>
@@ -144,7 +139,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a [routerLink]="['/admin/sumData']" class="nav-link">
                         <i class="nav-icon far fa-user"></i>
                         <p>
                             Thông tin người dùng
