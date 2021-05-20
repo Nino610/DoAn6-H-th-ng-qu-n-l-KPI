@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ManagerService } from 'src/app/services/manager.service';
 import { NgForm } from '@angular/forms';
 @Component({
-  selector: 'app-manager',
-  templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.css'],
+  selector: 'app-managers',
+  templateUrl: './managers.component.html',
+  styles: [],
 })
-export class ManagerComponent implements OnInit {
+export class ManagersComponent implements OnInit {
   constructor(public service: ManagerService) {}
   date6: Date;
   value: Date;

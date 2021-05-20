@@ -21,6 +21,7 @@ import { GroupkpiService } from '../../services/groupkpi.service';
 import { ManagerService } from '../../services/manager.service';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -73,6 +74,7 @@ export const adminroutes: Routes = [
     FormsModule,
     BrowserModule,
     CalendarModule,
+    CheckboxModule,
     InputTextModule,
     RouterModule.forChild(adminroutes),
   ],

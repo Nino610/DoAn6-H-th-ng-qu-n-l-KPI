@@ -15,10 +15,14 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-
+    <div class="p-field p-col-12 p-md-4">
+        <label for="basic">Basic</label>
+        <p-calendar inputId="basic" [(ngModel)]="date1"></p-calendar>
+    </div>
     <section class="content">
         <div class="container-fluid">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm</button>
+            <p-calendar inputId="basic" [(ngModel)]="date1"></p-calendar>
             <div class="row">
                 <div class="col-md-12">
                     <br>
@@ -56,68 +60,67 @@
         </div>
     </section>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Thông tin học phần</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-            </div>
-            <div class="modal-body">
-                <form #form="ngForm" (submit)="onSubmit(form)" class="needs-validation" novalidate>
-                    <input type="hidden" name="idmanager">
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom01">Mã quản lý: </label>
-                            <input #idmanager="ngModel" [(ngModel)]="service.formData.idmanager" name="idmanager" style="width: 150px;" class="form-control" placeholder="Mã quản lý" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom05">Mã Team</label>
-                            <input #idteam="ngModel" [(ngModel)]="service.formData.idteam" name="idteam" style="width: 150px;" class="form-control" placeholder="Mã Team" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom03">Tên quản lý</label>
-                            <input #namemanager="ngModel" [(ngModel)]="service.formData.namemanager" name="namemanager" style="width: 150px;" class="form-control" placeholder="Tên nhân viên" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom04">Ngày sinh</label>
-                            <input type="date" #birthday="ngModel" [(ngModel)]="service.formData.birthday" name="birthday" style="width: 150px;" class="form-control" placeholder="Ngày sinh" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom03">Địa chỉ</label>
-                            <input #address="ngModel" [(ngModel)]="service.formData.address" name="namemanager" style="width: 150px;" class="form-control" placeholder="Địa chỉ" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="validationCustom03">Số điện thoại</label>
-                            <input #phonenumber="ngModel" [(ngModel)]="service.formData.phonenumber" name="phonenumber" style="width: 150px;" class="form-control" placeholder="Số điện thoại" required>
-                            <div class="invalid-feedback">
-                                Vui lòng điền dữ liệu!
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Xác nhận</button>
-                    <!-- <button (click)="resetForm()" style="float: right;" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button> -->
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalLabel">Thông tin học phần</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+          </div>
+          <div class="modal-body">
+              <form #form="ngForm" (submit)="onSubmit(form)" class="needs-validation" novalidate>
+                  <input type="hidden" name="idmanager">
+                  <div class="form-row">
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom01">Mã quản lý: </label>
+                          <input #idmanager="ngModel" [(ngModel)]="service.formData.idmanager" name="idmanager" style="width: 150px;" class="form-control" placeholder="Mã quản lý" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom05">Mã Team</label>
+                          <input #idteam="ngModel" [(ngModel)]="service.formData.idteam" name="idteam" style="width: 150px;" class="form-control" placeholder="Mã Team" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom03">Tên quản lý</label>
+                          <input #namemanager="ngModel" [(ngModel)]="service.formData.namemanager" name="namemanager" style="width: 150px;" class="form-control" placeholder="Tên nhân viên" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom04">Ngày sinh</label>
+                          <input type="date" #birthday="ngModel" [(ngModel)]="service.formData.birthday" name="birthday" style="width: 150px;" class="form-control" placeholder="Ngày sinh" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom03">Địa chỉ</label>
+                          <input #address="ngModel" [(ngModel)]="service.formData.address" name="namemanager" style="width: 150px;" class="form-control" placeholder="Địa chỉ" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                          <label for="validationCustom03">Số điện thoại</label>
+                          <input #phonenumber="ngModel" [(ngModel)]="service.formData.phonenumber" name="phonenumber" style="width: 150px;" class="form-control" placeholder="Số điện thoại" required>
+                          <div class="invalid-feedback">
+                              Vui lòng điền dữ liệu!
+                          </div>
+                      </div>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Xác nhận</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div> -->

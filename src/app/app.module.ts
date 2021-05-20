@@ -68,6 +68,8 @@ const routes: Routes = [
     AdminModule,
     StaffModule,
     BrowserAnimationsModule,
+    // CheckboxModule,
+    // FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
