@@ -8,9 +8,10 @@ import { NgForm } from '@angular/forms';
 })
 export class ManagerComponent implements OnInit {
   constructor(public service: ManagerService) {}
-  date6: Date;
-  value: Date;
-  date1: Date;
+  displayBasic: boolean = false;
+  showBasicDialog() {
+    this.displayBasic = true;
+  }
   ngOnInit(): void {}
   onSubmit(form: NgForm) {
     this.insertRecord(form);

@@ -22,6 +22,10 @@ import { ManagerService } from '../../services/manager.service';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { SortEvent } from 'primeng/api';
+import { TableModule } from 'primeng/table';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -74,8 +78,11 @@ export const adminroutes: Routes = [
     FormsModule,
     BrowserModule,
     CalendarModule,
+    TableModule,
+    DialogModule,
     CheckboxModule,
     InputTextModule,
+    ButtonModule,
     RouterModule.forChild(adminroutes),
   ],
   bootstrap: [AdminComponent],
