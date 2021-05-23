@@ -61,32 +61,40 @@
     </section>
 
     <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <div class="form">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    Mã quản lý
-                    <input type="text"></div>
-                <div class="col-md-4 mb-3">Mã Team
-                    <input type="text">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        Mã quản lý
+                        <input type="text" name="idManager" #idManager="ngModel" [(ngModel)]="service.formData.idManager"></div>
+                    <div class="col-md-4 mb-3 ">Mã Team
+                        <input class="form-control" name="idTeam" #idTeam="ngModel" [(ngModel)]="service.formData.idTeam" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Tên quản lý
+                        <input class="form-control" name="nameManager" #nameManager="ngModel" [(ngModel)]="service.formData.nameManager" type="text ">
+                    </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    Tên quản lý
-                    <input type="text">
+                <div class="row ">
+                    <div class="col-md-4 mb-3 ">
+                        Ngày sinh
+                        <input class="form-control" type="date" name="birthday" #birthday="ngModel" [(ngModel)]="service.formData.birthday">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Địa chỉ
+                        <input class="form-control" name="address" #address="ngModel" [(ngModel)]="service.formData.address" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Số điện thoại
+                        <input class="form-control" name="phoneNumber" #phoneNumber="ngModel" [(ngModel)]="service.formData.phoneNumber" type="text ">
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    Ngày sinh
-                    <input type="date">
-                </div>
-                <div class="col-md-4 mb-3">Địa chỉ <input type="text"></div>
-                <div class="col-md-4 mb-3">Số điện thoại <input type="text"></div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
             </div>
-        </div>
-        <!-- <p-calendar inputId="basic" [(ngModel)]="date1"></p-calendar> -->
-        <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text"></p-button>
-            <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>
-        </ng-template>
+        </form>
+
     </p-dialog>
+
 </div>

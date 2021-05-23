@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ManagerComponent } from './manager/manager.component';
 import { SumDataComponent } from './sum-data/sum-data.component';
@@ -82,7 +83,9 @@ export const adminroutes: Routes = [
     DialogModule,
     CheckboxModule,
     InputTextModule,
+    BrowserAnimationsModule,
     ButtonModule,
+    HttpClientModule,
     RouterModule.forChild(adminroutes),
   ],
   bootstrap: [AdminComponent],
