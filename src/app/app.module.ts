@@ -22,6 +22,7 @@ import { LineComponent } from './main/admin/chart/line/line.component';
 import { PieComponent } from './main/admin/chart/pie/pie.component';
 import { GroupKPIComponent } from './main/admin/group-kpi/group-kpi.component';
 import { GroupkpiService } from './services/groupkpi.service';
+import { ToastrModule } from 'ngx-toastr';
 const routes: Routes = [
   {
     path: '',
@@ -67,6 +68,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AdminModule,
     StaffModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     // CheckboxModule,
     // FormsModule,

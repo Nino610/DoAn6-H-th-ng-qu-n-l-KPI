@@ -6,10 +6,13 @@ import { Manager } from '../models/manager';
   providedIn: 'root',
 })
 export class ManagerService {
-  readonly baseUrl = 'https://localhost:44364/api/Managers';
+  readonly baseUrl = 'https://localhost:44371/api/Managers';
   formData: Manager = new Manager();
   constructor(private http: HttpClient) {}
   post() {
     return this.http.post(this.baseUrl + '/them', this.formData);
+  }
+  get() {
+    return this.http.get(this.baseUrl);
   }
 }
