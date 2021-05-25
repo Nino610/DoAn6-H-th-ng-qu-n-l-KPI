@@ -83,7 +83,7 @@ export const adminroutes: Routes = [
     DialogModule,
     CheckboxModule,
     InputTextModule,
-
+    ButtonModule,
     BrowserAnimationsModule,
     ButtonModule,
     HttpClientModule,

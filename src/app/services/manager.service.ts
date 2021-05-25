@@ -8,11 +8,18 @@ import { Manager } from '../models/manager';
 export class ManagerService {
   readonly baseUrl = 'https://localhost:44371/api/Managers';
   formData: Manager = new Manager();
+  listManager: Manager[];
   constructor(private http: HttpClient) {}
   post() {
     return this.http.post(this.baseUrl + '/them', this.formData);
   }
   get() {
-    return this.http.get(this.baseUrl);
+    return this.http
+      .get(this.baseUrl)
+      .toPromise()
+      .then((res) => (this.listManager = res as Manager[]));
+  }
+  delete(id: String) {
+    return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
 }

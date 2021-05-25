@@ -21,37 +21,42 @@
             <br>
             <div class="row">
                 <div class="card">
-                    <p-table>
+                    <p-table [value]="listManager">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th pSortableColumn="code">Mã quản lý
-                                    <p-sortIcon field="code"></p-sortIcon>
+                                <th pSortableColumn="idteam">Mã quản lý
+                                    <p-sortIcon field="idteam"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="name">Mã Team
+                                <th pSortableColumn="idmanager">Mã Team
+                                    <p-sortIcon field="idmanager"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="name">Tên quản lý
                                     <p-sortIcon field="name"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="category">Tên quản lý
-                                    <p-sortIcon field="category"></p-sortIcon>
+                                <th pSortableColumn="birthday">Ngày sinh
+                                    <p-sortIcon field="birthday"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="quantity">Ngày sinh
-                                    <p-sortIcon field="quantity"></p-sortIcon>
+                                <th pSortableColumn="address">Địa chỉ
+                                    <p-sortIcon field="address"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="price">Địa chỉ
-                                    <p-sortIcon field="price"></p-sortIcon>
+                                <th pSortableColumn="phonenumber">Điện thoại
+                                    <p-sortIcon field="phonenumber"></p-sortIcon>
                                 </th>
-                                <th pSortableColumn="price">Số điện thoại
-                                    <p-sortIcon field="price"></p-sortIcon>
-                                </th>
+                                <th>Chức năng</th>
                             </tr>
                         </ng-template>
-                        ad
-                        <ng-template pTemplate="body" let-product>
+                        <ng-template pTemplate="body" let-data>
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
+                                <td>{{ data.idteam }}</td>
+                                <td>{{ data.idmanager }}</td>
+                                <td>{{ data.name }}</td>
+                                <td>{{ data.birthday|date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ data.address }}</td>
+                                <td>{{ data.phonenumber }}</td>
+                                <td>
+                                    <button (click)="updateform(sub)" pButton type="button" style="margin-right: 5px;" icon="pi pi-pencil"></button>
+                                    <button (click)="delete(data.idmanager)" pButton type="button" icon="pi pi-trash"></button>
+                                </td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -73,7 +78,7 @@
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên quản lý
-                        <input class="form-control" name="nameManager" #nameManager="ngModel" [(ngModel)]="service.formData.nameManager" type="text ">
+                        <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
                     </div>
                 </div>
                 <div class="row ">
