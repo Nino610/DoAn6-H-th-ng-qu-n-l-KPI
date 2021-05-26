@@ -13,6 +13,7 @@ export class ManagerComponent implements OnInit {
   test: String;
   constructor(public service: ManagerService, private toast: ToastrService) {}
   displayBasic: boolean = false;
+  displayBasicUpdate: boolean = false;
   showBasicDialog() {
     this.displayBasic = true;
   }
@@ -31,12 +32,29 @@ export class ManagerComponent implements OnInit {
       }
     );
   }
+  onSubmitUpdate(form1: NgForm) {
+    this.service.put().subscribe(
+      (res) => {
+        this.reset(form1);
+        this.service.get().then((data) => (this.listManager = data));
+        this.toast.info('Sửa thành công');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   reset(form: NgForm) {
     form.form.reset();
     this.service.formData = new Manager();
   }
+  displayUpdateForm(data: Manager) {
+    this.displayBasicUpdate = true;
+    // this.service.formData = data;
+    this.service.formData = Object.assign({}, data);
+  }
   delete(id: String) {
-    if (confirm('Are you sure you want to delete')) {
+    if (confirm('Bạn có muốn xóa dữ liệu không?')) {
       this.service.delete(id).subscribe((res) => {
         this.service.get().then((data) => (this.listManager = data));
         this.toast.error('Thông báo', 'Thao tác thành công');

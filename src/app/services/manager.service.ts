@@ -19,6 +19,12 @@ export class ManagerService {
       .toPromise()
       .then((res) => (this.listManager = res as Manager[]));
   }
+  put() {
+    return this.http.put(
+      this.baseUrl + '/sua/' + this.formData.idmanager,
+      this.formData
+    );
+  }
   delete(id: String) {
     return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
