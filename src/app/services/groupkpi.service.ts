@@ -5,6 +5,26 @@ import { Group } from '../models/groupKPI';
   providedIn: 'root',
 })
 export class GroupkpiService {
-  formData: Group;
-  constructor() {}
+  readonly baseUrl = 'https://localhost:44371/api/GroupKpis';
+  formData: Group = new Group();
+  listGroup: Group[];
+  constructor(private http: HttpClient) {}
+  post() {
+    return this.http.post(this.baseUrl + '/them', this.formData);
+  }
+  get() {
+    return this.http
+      .get(this.baseUrl)
+      .toPromise()
+      .then((res) => (this.listGroup = res as Group[]));
+  }
+  put() {
+    return this.http.put(
+      this.baseUrl + '/sua/' + this.formData.idgroupkpi,
+      this.formData
+    );
+  }
+  delete(id: String) {
+    return this.http.delete(this.baseUrl + '/xoa/' + id);
+  }
 }

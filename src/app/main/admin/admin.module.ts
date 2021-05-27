@@ -27,6 +27,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { SortEvent } from 'primeng/api';
 import { TableModule } from 'primeng/table';
+import { MultiSelectModule } from 'primeng/multiselect';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -83,6 +84,7 @@ export const adminroutes: Routes = [
     DialogModule,
     CheckboxModule,
     InputTextModule,
+    MultiSelectModule,
     ButtonModule,
     BrowserAnimationsModule,
     ButtonModule,

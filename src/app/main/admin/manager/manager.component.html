@@ -68,8 +68,15 @@
     <!-- form Thêm -->
     <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form novalidate #form="ngForm" (submit)="onSubmit(form)">
-
+            <input type="hidden" name="idmanager" [value]="service.formData.idmanager">
             <div class="form">
+                <div class="row">
+                    <!-- <select *ngFor="let item of service.listGroup">
+              <option value="item.idgroupkpi">{{ item.namegroupkpi }}</option>
+            </select> -->
+                    <p-multiSelect [options]="service.listGroup" [(ngModel)]="service.formData.idmanager" optionLabel="namegroupkpi" defaultLabel="Chọn mã chỉ tiêu">
+                    </p-multiSelect>
+                </div>
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         Mã quản lý
@@ -104,13 +111,14 @@
     </p-dialog>
     <!-- form Sửa -->
     <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form)">
+        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
             <!-- <input type="hidden" name="idmanager" [value]="service.formData.idmanager"> -->
             <div class="form">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         Mã quản lý
-                        <input type="text" name="idmanager" #idmanager="ngModel" [(ngModel)]="service.formData.idmanager"></div>
+                        <input type="text" name="idmanager" #idmanager="ngModel" [(ngModel)]="service.formData.idmanager">
+                    </div>
                     <div class="col-md-4 mb-3 ">Mã Team
                         <input class="form-control" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam" type="text ">
                     </div>

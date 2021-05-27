@@ -1,5 +1,5 @@
 export class Manager {
-  idmanager: string = '';
+  idmanager: String = '';
   idteam: string = '';
   name: string = '';
   birthday: string = '';

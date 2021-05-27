@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManagerService } from 'src/app/services/manager.service';
 import { NgForm } from '@angular/forms';
 import { Manager } from '../../../models/manager';
+import { Group } from '../../../models/groupKPI';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manager',
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManagerComponent implements OnInit {
   listManager: Manager[];
+  listGroup: Group[];
   test: String;
   constructor(public service: ManagerService, private toast: ToastrService) {}
   displayBasic: boolean = false;
@@ -19,8 +21,26 @@ export class ManagerComponent implements OnInit {
   }
   ngOnInit(): void {
     this.service.get().then((data) => (this.listManager = data));
+    this.service
+      .getGroupKpi()
+      .then((dataGroup) => (this.listGroup = dataGroup));
   }
   onSubmit(form: NgForm) {
+    this.insert(form);
+  }
+  onSubmitUpdate(form1: NgForm) {
+    this.update(form1);
+  }
+  reset(form: NgForm) {
+    form.form.reset();
+    this.service.formData = new Manager();
+  }
+  displayUpdateForm(data: Manager) {
+    this.displayBasicUpdate = true;
+    // this.service.formData = data;
+    this.service.formData = Object.assign({}, data);
+  }
+  insert(form: NgForm) {
     this.service.post().subscribe(
       (res) => {
         this.reset(form);
@@ -32,26 +52,17 @@ export class ManagerComponent implements OnInit {
       }
     );
   }
-  onSubmitUpdate(form1: NgForm) {
+  update(form1: NgForm) {
     this.service.put().subscribe(
       (res) => {
         this.reset(form1);
         this.service.get().then((data) => (this.listManager = data));
-        this.toast.info('Sửa thành công');
+        this.toast.success('Sửa thành công!');
       },
       (err) => {
         console.log(err);
       }
     );
-  }
-  reset(form: NgForm) {
-    form.form.reset();
-    this.service.formData = new Manager();
-  }
-  displayUpdateForm(data: Manager) {
-    this.displayBasicUpdate = true;
-    // this.service.formData = data;
-    this.service.formData = Object.assign({}, data);
   }
   delete(id: String) {
     if (confirm('Bạn có muốn xóa dữ liệu không?')) {
