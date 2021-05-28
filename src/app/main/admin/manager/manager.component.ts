@@ -3,6 +3,7 @@ import { ManagerService } from 'src/app/services/manager.service';
 import { NgForm } from '@angular/forms';
 import { Manager } from '../../../models/manager';
 import { Group } from '../../../models/groupKPI';
+import { Team } from '../../../models/team';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manager',
@@ -12,18 +13,18 @@ import { ToastrService } from 'ngx-toastr';
 export class ManagerComponent implements OnInit {
   listManager: Manager[];
   listGroup: Group[];
+  listTeam: Team[];
   test: String;
   constructor(public service: ManagerService, private toast: ToastrService) {}
   displayBasic: boolean = false;
   displayBasicUpdate: boolean = false;
+
   showBasicDialog() {
     this.displayBasic = true;
   }
   ngOnInit(): void {
     this.service.get().then((data) => (this.listManager = data));
-    this.service
-      .getGroupKpi()
-      .then((dataGroup) => (this.listGroup = dataGroup));
+    this.service.getTeam().then((dataTeam) => (this.listTeam = dataTeam));
   }
   onSubmit(form: NgForm) {
     this.insert(form);

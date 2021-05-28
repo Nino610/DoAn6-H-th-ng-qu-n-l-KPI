@@ -7,12 +7,12 @@ import { Team } from '../models/team';
 @Injectable({
   providedIn: 'root',
 })
-export class ManagerService {
+export class TeamService {
   readonly baseUrl = 'https://localhost:44371/api/Managers';
-  readonly TeamUrl = 'https://localhost:44371/api/Teams';
-  formData: Manager = new Manager();
-  listManager: Manager[];
+  readonly GroupKpiUrl = 'https://localhost:44371/api/GroupKpis';
+  formData: Team = new Team();
   listTeam: Team[];
+  listGroup: Group[];
   constructor(private http: HttpClient) {}
   post() {
     return this.http.post(this.baseUrl + '/them', this.formData);
@@ -21,17 +21,17 @@ export class ManagerService {
     return this.http
       .get(this.baseUrl)
       .toPromise()
-      .then((res) => (this.listManager = res as Manager[]));
-  }
-  getTeam() {
-    return this.http
-      .get(this.TeamUrl)
-      .toPromise()
       .then((res) => (this.listTeam = res as Team[]));
+  }
+  getGroupKpi() {
+    return this.http
+      .get(this.GroupKpiUrl)
+      .toPromise()
+      .then((res) => (this.listGroup = res as Group[]));
   }
   put() {
     return this.http.put(
-      this.baseUrl + '/sua/' + this.formData.idmanager,
+      this.baseUrl + '/sua/' + this.formData.idteam,
       this.formData
     );
   }
