@@ -121,7 +121,10 @@
                         <input type="text" name="idmanager" #idmanager="ngModel" [(ngModel)]="service.formData.idmanager">
                     </div>
                     <div class="col-md-4 mb-3 ">Mã Team
-                        <input class="form-control" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam" type="text ">
+                        <select name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
+                        <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
+                  </select>
+                        <!-- <input class="form-control" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam" type="text "> -->
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên quản lý
