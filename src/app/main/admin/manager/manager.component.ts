@@ -5,6 +5,7 @@ import { Manager } from '../../../models/manager';
 import { Group } from '../../../models/groupKPI';
 import { Team } from '../../../models/team';
 import { ToastrService } from 'ngx-toastr';
+import { analyzeNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
@@ -12,9 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManagerComponent implements OnInit {
   listManager: Manager[];
-  listGroup: Group[];
   listTeam: Team[];
   test: String;
+  basicData: any;
+  idteam: any;
+  basicOptions: any;
   constructor(public service: ManagerService, private toast: ToastrService) {}
   displayBasic: boolean = false;
   displayBasicUpdate: boolean = false;
@@ -25,6 +28,25 @@ export class ManagerComponent implements OnInit {
   ngOnInit(): void {
     this.service.get().then((data) => (this.listManager = data));
     this.service.getTeam().then((dataTeam) => (this.listTeam = dataTeam));
+    this.service.get().then((data) => {
+      this.basicData.labels = data.map((a) => a.idteam);
+    });
+    this.basicData = {
+      datasets: [
+        {
+          label: 'ad',
+          backgroundColor: '#42A5F5',
+          data: [65, 59, 80, 81, 56, 55, 40],
+        },
+        {
+          label: 'My Second dataset',
+          //label: this.listManager.map((a) => a.idteam),
+          backgroundColor: '#FFA726',
+          data: [28, 48, 40, 19, 86, 27, 90],
+          // data1: (this.data.labels = this.listManager.map((a) => a.idteam)),
+        },
+      ],
+    };
   }
   onSubmit(form: NgForm) {
     this.insert(form);

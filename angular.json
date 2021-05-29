@@ -41,6 +41,7 @@
                             "node_modules/admin-lte/dist/js/demo.js",
                             "node_modules/admin-lte/plugins/chart.js/Chart.min.js",
                             "node_modules/admin-lte/plugins/raphael/raphael.js",
+                            "node_modules/chart.js/dist/Chart.js",
                             "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js"
                         ]
                     },

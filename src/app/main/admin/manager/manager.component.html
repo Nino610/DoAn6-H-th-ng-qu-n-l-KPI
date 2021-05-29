@@ -149,6 +149,9 @@
                 <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasicUpdate=false " label="No "></p-button>
             </div>
         </form>
-
     </p-dialog>
+    <div class="card">
+        <h5>Vertical</h5>
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+    </div>
 </div>

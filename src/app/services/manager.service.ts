@@ -23,6 +23,9 @@ export class ManagerService {
       .toPromise()
       .then((res) => (this.listManager = res as Manager[]));
   }
+  getChart() {
+    return this.http.get(this.baseUrl);
+  }
   getTeam() {
     return this.http
       .get(this.TeamUrl)
