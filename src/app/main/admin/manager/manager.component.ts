@@ -12,6 +12,8 @@ import { analyzeNgModules } from '@angular/compiler';
   styleUrls: ['./manager.component.css'],
 })
 export class ManagerComponent implements OnInit {
+  fileToUpLoad: File = null;
+  imagerUrl: String;
   listManager: Manager[];
   listTeam: Team[];
   test: String;
@@ -30,6 +32,7 @@ export class ManagerComponent implements OnInit {
     this.service.getTeam().then((dataTeam) => (this.listTeam = dataTeam));
     this.service.get().then((data) => {
       this.basicData.labels = data.map((a) => a.idteam);
+      this.basicData.data = data.map((a) => a.idmanager);
     });
     this.basicData = {
       datasets: [
@@ -47,6 +50,14 @@ export class ManagerComponent implements OnInit {
         },
       ],
     };
+  }
+  handleFileInput(file: FileList) {
+    this.fileToUpLoad = file.item(0);
+    var reader = new FileReader();
+    // reader.onload = (even: any) => {
+    //   this.imagerUrl = event.target.result;
+    // };
+    reader.readAsDataURL(this.fileToUpLoad);
   }
   onSubmit(form: NgForm) {
     this.insert(form);

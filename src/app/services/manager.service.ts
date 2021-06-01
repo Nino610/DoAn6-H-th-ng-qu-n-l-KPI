@@ -8,8 +8,8 @@ import { Team } from '../models/team';
   providedIn: 'root',
 })
 export class ManagerService {
-  readonly baseUrl = 'https://localhost:44371/api/Managers';
-  readonly TeamUrl = 'https://localhost:44371/api/Teams';
+  readonly baseUrl = 'https://localhost:44393/api/Managers';
+  readonly TeamUrl = 'https://localhost:44393/api/Teams';
   formData: Manager = new Manager();
   listManager: Manager[];
   listTeam: Team[];

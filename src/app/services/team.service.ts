@@ -8,8 +8,8 @@ import { Team } from '../models/team';
   providedIn: 'root',
 })
 export class TeamService {
-  readonly baseUrl = 'https://localhost:44371/api/Managers';
-  readonly GroupKpiUrl = 'https://localhost:44371/api/GroupKpis';
+  readonly baseUrl = 'https://localhost:44393/api/Managers';
+  readonly GroupKpiUrl = 'https://localhost:44393/api/GroupKpis';
   formData: Team = new Team();
   listTeam: Team[];
   listGroup: Group[];

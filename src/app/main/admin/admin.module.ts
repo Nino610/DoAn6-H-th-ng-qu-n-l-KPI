@@ -29,6 +29,7 @@ import { SortEvent } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ChartModule } from 'primeng/chart';
+import { FileUploadModule } from 'primeng/fileupload';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -87,6 +88,7 @@ export const adminroutes: Routes = [
     InputTextModule,
     MultiSelectModule,
     ButtonModule,
+    FileUploadModule,
     ChartModule,
     BrowserAnimationsModule,
     ButtonModule,

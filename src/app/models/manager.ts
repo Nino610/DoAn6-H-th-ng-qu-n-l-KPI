@@ -5,4 +5,6 @@ export class Manager {
   birthday: String = '';
   address: String = '';
   phonenumber: number = 0;
+  gender: number;
+  photo: String = '';
 }

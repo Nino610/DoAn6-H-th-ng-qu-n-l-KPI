@@ -5,7 +5,7 @@ import { Group } from '../models/groupKPI';
   providedIn: 'root',
 })
 export class GroupkpiService {
-  readonly baseUrl = 'https://localhost:44371/api/GroupKpis';
+  readonly baseUrl = 'https://localhost:44393/api/GroupKpis';
   formData: Group = new Group();
   listGroup: Group[];
   constructor(private http: HttpClient) {}

@@ -52,7 +52,7 @@
                                 <td>{{ data.name }}</td>
                                 <td>{{ data.birthday|date: 'dd/MM/yyyy' }}</td>
                                 <td>{{ data.address }}</td>
-                                <td>{{ data.phonenumber }}</td>
+                                <td>0{{ data.phonenumber }}</td>
                                 <td>
                                     <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px;" icon="pi pi-pencil"></button>
                                     <button (click)="delete(data.idmanager)" pButton type="button" icon="pi pi-trash"></button>
@@ -71,23 +71,32 @@
             <input type="hidden" name="idmanager" [value]="service.formData.idmanager">
             <div class="form">
                 <div class="row">
-                    <!-- <select *ngFor="let item of service.listGroup">
-              <option value="item.idgroupkpi">{{ item.namegroupkpi }}</option>
-            </select> -->
-
-                </div>
-                <div class="row">
                     <div class="col-md-4 mb-3">
                         Mã quản lý
-                        <input type="text" name="idmanager" #idmanager="ngModel" [(ngModel)]="service.formData.idmanager"></div>
+                        <input class="form-control" type="text" name="idmanager" #idmanager="ngModel" [(ngModel)]="service.formData.idmanager"></div>
                     <div class="col-md-4 mb-3 ">Mã Team
-                        <select name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
+                        <select style="width: 192px;
+                        height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
                           <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
                     </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên quản lý
                         <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">Giới tính
+                        <select style="width: 192px;
+                    height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
+                       <option value="false">Nữ</option>
+                       <option value="true">Nam</option>
+                </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Ảnh đại diện
+                        <!-- <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload> -->
+                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event.target.files)">
                     </div>
                 </div>
                 <div class="row ">
