@@ -1,8 +1,176 @@
-<div class="p-field p-col-12 p-md-4">
-    <label for="basic">Basic</label>
-    <p-calendar inputId="basic"></p-calendar>
-</div>
-<div class="p-field p-col-12 p-md-4">
-    <label for="spanish">Spanish</label>
-    <p-calendar dateFormat="dd/mm/yy" inputId="spanish"></p-calendar>
+<div class="container-fluid">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thông tin nhân viên</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Thông tin nhân viên</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Thêm"></p-button>
+            <br>
+            <br>
+            <div class="row">
+                <div class="card">
+                    <p-table [value]="listEmployee">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="idteam">Mã nhân viên
+                                    <p-sortIcon field="idteam"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="idmanager">Mã Team
+                                    <p-sortIcon field="idmanager"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="name">Tên nhân viên
+                                    <p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="birthday">Ngày sinh
+                                    <p-sortIcon field="birthday"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="birthday">Giới tính
+                                    <p-sortIcon field="birthday"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="address">Địa chỉ
+                                    <p-sortIcon field="address"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="email">Email
+                                    <p-sortIcon field="email"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="phonenumber">Điện thoại
+                                    <p-sortIcon field="phonenumber"></p-sortIcon>
+                                </th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-data>
+                            <tr>
+                                <td>{{ data.idemployee }}</td>
+                                <td>{{ data.idteam }}</td>
+                                <td>{{ data.name }}</td>
+                                <td>{{ data.birthday|date: 'dd/MM/yyyy' }}</td>
+                                <td>{{ data.gender }}</td>
+                                <td>{{ data.address }}</td>
+                                <td>{{ data.email }}</td>
+                                <td>{{ data.phonenumber }}</td>
+                                <td>
+                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px;" icon="pi pi-pencil"></button>
+                                    <button (click)="delete(data.idemployee)" pButton type="button" icon="pi pi-trash"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- form Thêm -->
+    <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+            <input type="hidden" name="idmanager" [value]="service.formData.idemployee">
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        Mã nhân viên
+                        <input class="form-control" type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee"></div>
+                    <div class="col-md-4 mb-3 ">Mã Team
+                        <select style="width: 192px;
+                      height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
+                        <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
+                  </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Tên nhân viên
+                        <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">Giới tính
+                        <select style="width: 192px;
+                  height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
+                     <option value="true">Nữ</option>
+                     <option value="false">Nam</option>
+              </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">Email
+                        <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
+                    </div>
+                    <!-- <div class="col-md-4 mb-3 ">
+                      Ảnh đại diện
+                      <input type="file" #photo accept="image/*" (change)="handleFileInput($event.target.files)">
+                  </div> -->
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mb-3 ">
+                        Ngày sinh
+                        <input class="form-control" type="date" name="birthday" #birthday="ngModel" [(ngModel)]="service.formData.birthday">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Địa chỉ
+                        <input class="form-control" name="address" #address="ngModel" [(ngModel)]="service.formData.address" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Số điện thoại
+                        <input class="form-control" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="service.formData.phonenumber" type="text ">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
+            </div>
+        </form>
+
+    </p-dialog>
+    <!-- form Sửa -->
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
+            <!-- <input type="hidden" name="idmanager" [value]="service.formData.idmanager"> -->
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        Mã quản lý
+                        <input type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Mã Team
+                        <select name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
+                      <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
+                </select>
+                        <!-- <input class="form-control" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam" type="text "> -->
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Tên quản lý
+                        <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 mb-3 ">
+                        Ngày sinh
+                        <input class="form-control" type="date" name="birthday" #birthday="ngModel" [(ngModel)]="service.formData.birthday">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Địa chỉ
+                        <input class="form-control" name="address" #address="ngModel" [(ngModel)]="service.formData.address" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">Số điện thoại
+                        <input class="form-control" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="service.formData.phonenumber" type="text ">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasicUpdate=false " label="No "></p-button>
+            </div>
+        </form>
+    </p-dialog>
+    <div class="card">
+        <h5>Vertical</h5>
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+    </div>
 </div>
