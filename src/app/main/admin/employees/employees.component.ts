@@ -14,6 +14,11 @@ export class EmployeesComponent implements OnInit {
   imagerUrl: String;
   listEmployee: Employee[];
   listTeam: Team[];
+  Gender: any[] = [
+    { name: 'Nam', value: 'Nam' },
+    { name: 'Nữ', value: 'Nữ' },
+  ];
+
   test: String;
   basicData: any;
   idteam: any;

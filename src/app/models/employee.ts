@@ -6,6 +6,6 @@ export class Employee {
   address: String = '';
   phonenumber: String = '';
   email: String = '';
-  gender: boolean = true;
+  gender: String = '';
   // photo: String = '';
 }

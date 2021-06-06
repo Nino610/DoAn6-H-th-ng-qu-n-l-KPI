@@ -96,10 +96,9 @@
                 <div class="row">
                     <div class="col-md-4 mb-3 ">Giới tính
                         <select style="width: 192px;
-                  height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
-                     <option value="true">Nữ</option>
-                     <option value="false">Nam</option>
-              </select>
+              height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
+                <option  name="gender" *ngFor="let gender of Gender" [value]="gender.value">{{ gender.name }}</option>
+          </select>
                     </div>
                     <div class="col-md-4 mb-3 ">Email
                         <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
