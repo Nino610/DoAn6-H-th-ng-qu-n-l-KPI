@@ -20,6 +20,10 @@ export class ManagerComponent implements OnInit {
   basicData: any;
   idteam: any;
   basicOptions: any;
+  Gender: any[] = [
+    { name: 'Nam', value: 'Nam' },
+    { name: 'Nữ', value: 'Nữ' },
+  ];
   constructor(public service: ManagerService, private toast: ToastrService) {}
   displayBasic: boolean = false;
   displayBasicUpdate: boolean = false;
@@ -51,13 +55,11 @@ export class ManagerComponent implements OnInit {
       ],
     };
   }
-  handleFileInput(file: FileList) {
-    this.fileToUpLoad = file.item(0);
-    var reader = new FileReader();
-    // reader.onload = (even: any) => {
-    //   this.imagerUrl = event.target.result;
-    // };
-    reader.readAsDataURL(this.fileToUpLoad);
+  handleFileInput(event) {
+    if (event.target.files.length > 0) {
+      console.log(event.target.files[0].name);
+      this.service.formData.photo = event.target.files[0].name;
+    }
   }
   onSubmit(form: NgForm) {
     this.insert(form);
@@ -102,7 +104,7 @@ export class ManagerComponent implements OnInit {
     if (confirm('Bạn có muốn xóa dữ liệu không?')) {
       this.service.delete(id).subscribe((res) => {
         this.service.get().then((data) => (this.listManager = data));
-        this.toast.error('Thông báo', 'Thao tác thành công');
+        this.toast.error('Thông báo', 'Xóa thành công');
       });
     }
   }

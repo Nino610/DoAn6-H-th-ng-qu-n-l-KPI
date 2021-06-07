@@ -7,5 +7,5 @@ export class Employee {
   phonenumber: String = '';
   email: String = '';
   gender: String = '';
-  // photo: String = '';
+  photo: String = '';
 }

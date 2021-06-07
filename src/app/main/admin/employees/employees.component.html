@@ -48,6 +48,9 @@
                                 <th pSortableColumn="phonenumber">Điện thoại
                                     <p-sortIcon field="phonenumber"></p-sortIcon>
                                 </th>
+                                <th pSortableColumn="phonenumber">Ảnh
+                                    <p-sortIcon field="phonenumber"></p-sortIcon>
+                                </th>
                                 <th>Chức năng</th>
                             </tr>
                         </ng-template>
@@ -61,9 +64,10 @@
                                 <td>{{ data.address }}</td>
                                 <td>{{ data.email }}</td>
                                 <td>{{ data.phonenumber }}</td>
+                                <td><img style="width: 80px" src="/assets/img/photo/{{ data.photo }} " alt="Avatar" /></td>
                                 <td>
-                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px;" icon="pi pi-pencil"></button>
-                                    <button (click)="delete(data.idemployee)" pButton type="button" icon="pi pi-trash"></button>
+                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
+                                    <button style="margin-right: 5px; width:30px" (click)="delete(data.idemployee)" pButton type="button" icon="pi pi-trash"></button>
                                 </td>
                             </tr>
                         </ng-template>
@@ -103,10 +107,10 @@
                     <div class="col-md-4 mb-3 ">Email
                         <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
                     </div>
-                    <!-- <div class="col-md-4 mb-3 ">
-                      Ảnh đại diện
-                      <input type="file" #photo accept="image/*" (change)="handleFileInput($event.target.files)">
-                  </div> -->
+                    <div class="col-md-4 mb-3 ">
+                        Ảnh đại diện
+                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event)">
+                    </div>
                 </div>
                 <div class="row ">
                     <div class="col-md-4 mb-3 ">
@@ -132,21 +136,36 @@
     <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
             <!-- <input type="hidden" name="idmanager" [value]="service.formData.idmanager"> -->
+            <input type="hidden" name="idmanager" [value]="service.formData.idemployee">
             <div class="form">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        Mã quản lý
-                        <input type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee">
-                    </div>
+                        Mã nhân viên
+                        <input class="form-control" type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee"></div>
                     <div class="col-md-4 mb-3 ">Mã Team
-                        <select name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
-                      <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
-                </select>
-                        <!-- <input class="form-control" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam" type="text "> -->
+                        <select style="width: 192px;
+                      height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
+                        <option  name="idteam" *ngFor="let team of service.listTeam" [value]="team.idteam">{{ team.nameteam }} {{ team.idteam }}</option>
+                  </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
-                        Tên quản lý
+                        Tên nhân viên
                         <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">Giới tính
+                        <select style="width: 192px;
+              height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
+                <option  name="gender" *ngFor="let gender of Gender" [value]="gender.value">{{ gender.name }}</option>
+          </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">Email
+                        <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Ảnh đại diện
+                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event)">
                     </div>
                 </div>
                 <div class="row ">

@@ -39,27 +39,35 @@
                                 <th pSortableColumn="birthday">Giới tính
                                     <p-sortIcon field="birthday"></p-sortIcon>
                                 </th>
+                                <th pSortableColumn="email">Email
+                                    <p-sortIcon field="email"></p-sortIcon>
+                                </th>
                                 <th pSortableColumn="address">Địa chỉ
                                     <p-sortIcon field="address"></p-sortIcon>
                                 </th>
                                 <th pSortableColumn="phonenumber">Điện thoại
                                     <p-sortIcon field="phonenumber"></p-sortIcon>
                                 </th>
+                                <th pSortableColumn="photo">Ảnh đại diện
+                                    <p-sortIcon field="photo"></p-sortIcon>
+                                </th>
                                 <th>Chức năng</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-data>
                             <tr>
-                                <td>{{ data.idmanager }}</td>
+                                <td style="text-align: justify;">{{ data.idmanager }}</td>
                                 <td>{{ data.idteam }}</td>
                                 <td>{{ data.name }}</td>
                                 <td>{{ data.birthday|date: 'dd/MM/yyyy' }}</td>
                                 <td>{{ data.gender }}</td>
+                                <td>{{ data.email }}</td>
                                 <td>{{ data.address }}</td>
                                 <td>{{ data.phonenumber }}</td>
+                                <td><img style="width: 80px" src="/assets/img/photo/{{ data.photo }} " alt="Avatar" /></td>
                                 <td>
-                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px;" icon="pi pi-pencil"></button>
-                                    <button (click)="delete(data.idmanager)" pButton type="button" icon="pi pi-trash"></button>
+                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
+                                    <button style="margin-right: 5px; width:30px" (click)="delete(data.idmanager)" pButton type="button" icon="pi pi-trash"></button>
                                 </td>
                             </tr>
                         </ng-template>
@@ -93,14 +101,18 @@
                     <div class="col-md-4 mb-3 ">Giới tính
                         <select style="width: 192px;
                     height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
-                       <option value="true">Nữ</option>
-                       <option value="false">Nam</option>
+                       <option value="Nữ">Nữ</option>
+                       <option value="Nam">Nam</option>
                 </select>
                     </div>
-                    <!-- <div class="col-md-4 mb-3 ">
+                    <div class="col-md-4 mb-3 ">
+                        Email
+                        <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
                         Ảnh đại diện
-                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event.target.files)">
-                    </div> -->
+                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event)">
+                    </div>
                 </div>
                 <div class="row ">
                     <div class="col-md-4 mb-3 ">
@@ -141,6 +153,23 @@
                     <div class="col-md-4 mb-3 ">
                         Tên quản lý
                         <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.name" type="text ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">Giới tính
+                        <select style="width: 192px;
+                  height: 38px;" name="gender" #gender="ngModel" [(ngModel)]="service.formData.gender">
+                     <option value="Nữ">Nữ</option>
+                     <option value="Nam">Nam</option>
+              </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Email
+                        <input class="form-control" name="email" #email="ngModel" [(ngModel)]="service.formData.email" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Ảnh đại diện
+                        <input type="file" #photo accept="image/*" (change)="handleFileInput($event)">
                     </div>
                 </div>
                 <div class="row ">

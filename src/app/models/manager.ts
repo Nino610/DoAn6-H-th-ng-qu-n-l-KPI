@@ -4,7 +4,8 @@ export class Manager {
   name: String = '';
   birthday: String = '';
   address: String = '';
+  email: String = '';
   phonenumber: String = '';
-  gender: boolean = true;
-  // photo: String = '';
+  gender: String = '';
+  photo: String = '';
 }
