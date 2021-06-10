@@ -1,1 +1,73 @@
-<p>register works!</p>
+<body style="  background-image: linear-gradient(#33CCCC,#33CC99,#33CC66);" class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div style="border-radius: 20px;" class="card-body login-card-body">
+                <p class="login-box-msg">Hệ thống quản lý chỉ tiêu KPI</p>
+
+                <form [formGroup]="service.formModel" atucomplete="off">
+                    <div class=" input-group mb-3 " required>
+                        <input formControlName="UserName" class="form-control " placeholder="Mã nhân viên ">
+                        <div class="input-group-append ">
+                            <div class="input-group-text ">
+                                <span class="fas fa-user "></span>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required ">Mã nhân viên không được bỏ trống</label>
+                    <label class="text-danger" *ngIf="service.formModel.get('UserName').errors?.maxlength">Mã nhân viên không quá 6 số</label>
+                    <div class="input-group mb-3 " required>
+                        <input formControlName="FullName" class="form-control " placeholder="Tên đầy đủ ">
+                        <div class="input-group-append ">
+                            <div class="input-group-text ">
+                                <span class="far fa-user-circle "></span>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="text-danger" *ngIf="service.formModel.get('FullName').touched && service.formModel.get('FullName').errors?.required">Tên không được bỏ trống</label>
+                    <div formGroupName="Passwords">
+                        <div required class="input-group mb-3 ">
+                            <input formControlName="Password" type="password" class="form-control " placeholder="Nhập mật khẩu ">
+                            <div class="input-group-append ">
+                                <div class="input-group-text ">
+                                    <span class="fas fa-lock "></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Mật khẩu không được bỏ trống</label>
+                        <div class="input-group mb-3 ">
+                            <input formControlName="ConfirmPassword" type="password " class="form-control " placeholder="Nhập lại mật khẩu ">
+                            <div class="input-group-append ">
+                                <div class="input-group-text ">
+                                    <span class="fas fa-lock "></span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Mật khẩu không được bỏ trống</label>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 ">
+                            <button type="submit " class="btn btn-primary btn-block ">Đăng ký</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+                <p class="mb-0 ">
+                    <a href="/login" class="text-center ">Quay lại trang đăng nhập</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js "></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js "></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js "></script>
+</body>

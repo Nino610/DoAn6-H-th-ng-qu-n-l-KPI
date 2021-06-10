@@ -23,6 +23,7 @@ import { PieComponent } from './main/admin/chart/pie/pie.component';
 import { GroupKPIComponent } from './main/admin/group-kpi/group-kpi.component';
 import { GroupkpiService } from './services/groupkpi.service';
 import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -56,8 +57,8 @@ const routes: Routes = [
     TargetListComponent,
     ProgressListComponent,
     LoginComponent,
-    RegisterComponent,
     UnpageComponent,
+    RegisterComponent,
     AdminComponent,
     StaffComponent,
     LineComponent,
@@ -70,6 +71,7 @@ const routes: Routes = [
     StaffModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     // CheckboxModule,
     // FormsModule,
   ],

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private fb: FormBuilder, public service: LoginService) {}
+  public formdata: any;
+  ngOnInit(): void {}
 }
