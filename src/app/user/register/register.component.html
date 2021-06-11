@@ -8,7 +8,8 @@
             <div style="border-radius: 20px;" class="card-body login-card-body">
                 <p class="login-box-msg">Hệ thống quản lý chỉ tiêu KPI</p>
 
-                <form [formGroup]="service.formModel" atucomplete="off">
+                <form [formGroup]="service.formModel" atucomplete="off" (submit)="onSubmit()">
+                    <!-- UserName -->
                     <div class=" input-group mb-3 " required>
                         <input formControlName="UserName" class="form-control " placeholder="Mã nhân viên ">
                         <div class="input-group-append ">
@@ -19,6 +20,14 @@
                     </div>
                     <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required ">Mã nhân viên không được bỏ trống</label>
                     <label class="text-danger" *ngIf="service.formModel.get('UserName').errors?.maxlength">Mã nhân viên không quá 6 số</label>
+                    <!-- permission -->
+                    <div class="col-md-4 mb-3 ">Chức vụ
+                        <select formControlName="Permission" style="width: 310px; height: 38px;">
+                      <option class="form-control "  *ngFor="let a of Permission"  [ngValue]="a.value" >{{ a.name }}</option>
+                </select>
+                        <!-- <input formControlName="Permission" class="form-control " placeholder="Mã nhân viên "> -->
+                    </div>
+                    <!-- FullName -->
                     <div class="input-group mb-3 " required>
                         <input formControlName="FullName" class="form-control " placeholder="Tên đầy đủ ">
                         <div class="input-group-append ">
@@ -28,6 +37,7 @@
                         </div>
                     </div>
                     <label class="text-danger" *ngIf="service.formModel.get('FullName').touched && service.formModel.get('FullName').errors?.required">Tên không được bỏ trống</label>
+                    <!-- password -->
                     <div formGroupName="Passwords">
                         <div required class="input-group mb-3 ">
                             <input formControlName="Password" type="password" class="form-control " placeholder="Nhập mật khẩu ">
@@ -39,7 +49,7 @@
                         </div>
                         <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Mật khẩu không được bỏ trống</label>
                         <div class="input-group mb-3 ">
-                            <input formControlName="ConfirmPassword" type="password " class="form-control " placeholder="Nhập lại mật khẩu ">
+                            <input formControlName="ConfirmPassword" type="password" class="form-control " placeholder="Nhập lại mật khẩu ">
                             <div class="input-group-append ">
                                 <div class="input-group-text ">
                                     <span class="fas fa-lock "></span>
@@ -47,10 +57,11 @@
                             </div>
                         </div>
                         <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Mật khẩu không được bỏ trống</label>
+                        <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordNotMatch">Mật khẩu không khớp</label>
                     </div>
                     <div class="row ">
                         <div class="col-4 ">
-                            <button type="submit " class="btn btn-primary btn-block ">Đăng ký</button>
+                            <button type="submit" class="btn btn-primary btn-block ">Đăng ký</button>
                         </div>
                         <!-- /.col -->
                     </div>

@@ -4,40 +4,60 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Manager } from '../models/manager';
 import { Group } from '../models/groupKPI';
 import { Team } from '../models/team';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../models/employee';
+import { Account } from '../models/account';
 import { MustMatch } from '../helpers/must-match.validator';
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  readonly registerUrl = '  https://localhost:44393/api/Accounts';
+  readonly registerUrl = 'https://localhost:44393/api/Accounts';
   readonly TeamUrl = 'https://localhost:44393/api/Teams';
   formData: Employee = new Employee();
   listEmployee: Employee[];
   listTeam: Team[];
+  listAccount: Account[];
   constructor(private http: HttpClient, private fb: FormBuilder) {}
   formModel = this.fb.group({
     UserName: ['', [Validators.required, Validators.maxLength(6)]],
-    FullName: ['', Validators.required],
     Passwords: this.fb.group(
       {
         Password: ['', Validators.required],
         ConfirmPassword: ['', Validators.required],
+      },
+      {
+        validator: this.compoarePawwords,
       }
-      // {
-      //   validator: MustMatch('matkhau', 'nhaplaimatkhau'),
-      // }
     ),
+    FullName: ['', Validators.required],
+    Permission: ['', Validators.required],
   });
-  post() {
-    return this.http.post(this.registerUrl + '/them', this.formData);
+  compoarePawwords(fb: FormGroup) {
+    let confirmPswdCtrl = fb.get('ConfirmPassword');
+    if (
+      confirmPswdCtrl.errors == null ||
+      'passordNotMatch' in confirmPswdCtrl.errors
+    ) {
+      if (fb.get('Password').value != confirmPswdCtrl.value)
+        confirmPswdCtrl.setErrors({ passwordNotMatch: true });
+      else confirmPswdCtrl.setErrors(null);
+    }
+  }
+  register() {
+    var body = {
+      Username: this.formModel.value.UserName,
+      Password: this.formModel.value.Passwords.Password,
+      Fullname: this.formModel.value.FullName,
+      Permission: this.formModel.value.Permission,
+    };
+    return this.http.post(this.registerUrl + '/them', body);
   }
 
-  getTeam() {
+  getPermission() {
     return this.http
-      .get(this.TeamUrl)
+      .get(this.registerUrl)
       .toPromise()
-      .then((res) => (this.listTeam = res as Team[]));
+      .then((res) => (this.listAccount = res as Account[]));
   }
 }
