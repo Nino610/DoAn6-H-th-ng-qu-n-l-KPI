@@ -7,9 +7,9 @@
         <div class="card">
             <div style="border-radius: 20px;" class="card-body login-card-body">
                 <p class="login-box-msg">Hệ thống quản lý chỉ tiêu KPI</p>
-                <form [formGroup]="myForm">
+                <form #form="ngForm" autocomplete="off">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Mã nhân viên">
+                        <input class="form-control" name="UseName" #UseName="ngModel" [(ngModel)]="formModel.UserName" type="text" placeholder="Mã nhân viên" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Mật khẩu">
+                        <input type="password" class="form-control" name="Password" #Password="ngModel" [(ngModel)]="formModel.Password" placeholder="Mật khẩu" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -34,7 +34,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button style="width: 305px;" type="submit" class="btn btn-block btn-primary">Đăng nhập</button>
+                        <button style="width: 305px;" type="submit" [disabled]="form.invalid" class="btn btn-block btn-primary">Đăng nhập</button>
                     </div>
                     <!-- /.col -->
                 </form>

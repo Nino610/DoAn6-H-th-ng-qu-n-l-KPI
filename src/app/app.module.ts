@@ -6,7 +6,6 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ManagerComponent } from './main/admin/manager/manager.component';
 import { SumDataComponent } from './main/admin/sum-data/sum-data.component';
 import { TargetListComponent } from './main/admin/KPI/target-list/target-list.component';
 import { ProgressListComponent } from './main/admin/KPI/progress-list/progress-list.component';
@@ -20,10 +19,8 @@ import { AdminModule } from './main/admin/admin.module';
 import { StaffModule } from './main/staff/staff.module';
 import { LineComponent } from './main/admin/chart/line/line.component';
 import { PieComponent } from './main/admin/chart/pie/pie.component';
-import { GroupKPIComponent } from './main/admin/group-kpi/group-kpi.component';
-import { GroupkpiService } from './services/groupkpi.service';
 import { ToastrModule } from 'ngx-toastr';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -72,8 +69,7 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    // CheckboxModule,
-    // FormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
