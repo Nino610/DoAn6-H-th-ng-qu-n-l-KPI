@@ -8,4 +8,5 @@ export class Employee {
   email: String = '';
   gender: String = '';
   photo: String = '';
+  permission: String='';
 }

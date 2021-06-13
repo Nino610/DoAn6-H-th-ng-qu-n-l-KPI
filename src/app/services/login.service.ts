@@ -12,7 +12,8 @@ import { MustMatch } from '../helpers/must-match.validator';
   providedIn: 'root',
 })
 export class LoginService {
-  readonly registerUrl = 'https://localhost:44393/api/Accounts';
+  readonly Url = 'https://localhost:44393/api/Accounts';
+  readonly profileUrl = 'https://localhost:44393/api/UserProfile';
   readonly TeamUrl = 'https://localhost:44393/api/Teams';
   formData: Employee = new Employee();
   listEmployee: Employee[];
@@ -51,12 +52,21 @@ export class LoginService {
       Fullname: this.formModel.value.FullName,
       Permission: this.formModel.value.Permission,
     };
-    return this.http.post(this.registerUrl + '/them', body);
+    return this.http.post(this.Url + '/them', body);
+  }
+  login(formData) {
+    return this.http.post(this.Url + '/login', formData);
+  }
+  getUserProfile() {
+    var token = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    });
+    //return this.http.get(this.profileUrl, { headers: tokenHeaders });
   }
 
   getPermission() {
     return this.http
-      .get(this.registerUrl)
+      .get(this.Url)
       .toPromise()
       .then((res) => (this.listAccount = res as Account[]));
   }
