@@ -15,8 +15,6 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { DepartmentComponent } from './department/department.component';
-import { LineComponent } from './chart/line/line.component';
-import { PieComponent } from './chart/pie/pie.component';
 import { GroupKPIComponent } from './group-kpi/group-kpi.component';
 import { GroupkpiService } from '../../services/groupkpi.service';
 import { ManagerService } from '../../services/manager.service';
@@ -30,6 +28,9 @@ import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
+import { LineComponent } from '../../shared/chart/line/line.component';
+import { PieComponent } from '../../shared/chart/pie/pie.component';
+import { AuthGuard } from '../../auth/auth.guard';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -64,18 +65,22 @@ export const adminroutes: Routes = [
         component: GroupKPIComponent,
       },
       {
-        path: 'chart/line',
+        path: 'home',
         component: LineComponent,
-      },
-      {
-        path: 'chart/pie',
-        component: PieComponent,
+        canActivate: [AuthGuard],
       },
     ],
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({
-  declarations: [DepartmentComponent, EmployeesComponent, ManagerComponent],
+  declarations: [
+    DepartmentComponent,
+    EmployeesComponent,
+    ManagerComponent,
+    LineComponent,
+    PieComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

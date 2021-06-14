@@ -8,14 +8,18 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" *ngIf="userDetail">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <div style="padding-top: 5px;" class="image">
+                <img style="width: 90px;
+                height: 90px;" src="/assets/img/photo/{{ userDetail.photo }} " class="img-circle elevation-2" alt="User Image">
             </div>
-            <div class="info">
-                <a href="#" class="d-block">Đỗ Tuấn Anh</a>
+            <div class="info" style="padding-top: 30px;">
+                <h4 style="color: white;font-size: 18px;">{{ userDetail.name }}</h4>
+                <a style="cursor: pointer;" (click)="logout()">
+                  LogOut
+              </a>
             </div>
         </div>
 

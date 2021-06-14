@@ -58,10 +58,10 @@ export class LoginService {
     return this.http.post(this.Url + '/login', formData);
   }
   getUserProfile() {
-    var token = new HttpHeaders({
+    var tokenHeaders = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     });
-    //return this.http.get(this.profileUrl, { headers: tokenHeaders });
+    return this.http.get(this.profileUrl, { headers: tokenHeaders });
   }
 
   getPermission() {

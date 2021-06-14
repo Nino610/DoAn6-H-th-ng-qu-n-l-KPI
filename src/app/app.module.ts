@@ -17,20 +17,17 @@ import { AdminComponent } from './main/admin/admin.component';
 import { StaffComponent } from './main/staff/staff.component';
 import { AdminModule } from './main/admin/admin.module';
 import { StaffModule } from './main/staff/staff.module';
-import { LineComponent } from './main/admin/chart/line/line.component';
-import { PieComponent } from './main/admin/chart/pie/pie.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
-  {
-    path: '',
-    component: EmployeesComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  // },
+
   {
     path: 'login',
     component: LoginComponent,
@@ -58,8 +55,6 @@ const routes: Routes = [
     RegisterComponent,
     AdminComponent,
     StaffComponent,
-    LineComponent,
-    PieComponent,
   ],
   imports: [
     BrowserModule,

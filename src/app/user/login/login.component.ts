@@ -15,7 +15,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toast: ToastrService
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('token') != null)
+      this.router.navigateByUrl('home');
+  }
   formModel = {
     UserName: '',
     Password: '',
