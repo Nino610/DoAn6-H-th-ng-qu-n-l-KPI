@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { NgForm } from '@angular/forms';
 import { Employee } from '../../../models/employee';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -23,10 +24,18 @@ export class EmployeesComponent implements OnInit {
   basicOptions: any;
   displayBasic: boolean = false;
   displayBasicUpdate: boolean = false;
-  constructor(public service: EmployeeService, private toast: ToastrService) {}
+  constructor(
+    public service: EmployeeService,
+    private toast: ToastrService,
+    private router: Router
+  ) {}
 
   showBasicDialog() {
     this.displayBasic = true;
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
   ngOnInit(): void {
     this.service.get().then((data) => (this.listEmployee = data));

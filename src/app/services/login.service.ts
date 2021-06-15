@@ -8,11 +8,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../models/employee';
 import { Account } from '../models/account';
 import { MustMatch } from '../helpers/must-match.validator';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   readonly Url = 'https://localhost:44393/api/Accounts';
+  readonly baseUrl = '  https://localhost:44393/api/Employees';
   readonly profileUrl = 'https://localhost:44393/api/UserProfile';
   readonly TeamUrl = 'https://localhost:44393/api/Teams';
   formData: Employee = new Employee();
@@ -63,7 +65,9 @@ export class LoginService {
     });
     return this.http.get(this.profileUrl, { headers: tokenHeaders });
   }
-
+  update(id, data): Observable<any> {
+    return this.http.put(`${this.baseUrl}/sua/${id}`, data);
+  }
   getPermission() {
     return this.http
       .get(this.Url)

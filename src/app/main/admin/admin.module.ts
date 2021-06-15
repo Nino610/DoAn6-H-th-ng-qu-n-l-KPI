@@ -30,6 +30,7 @@ import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
 import { LineComponent } from '../../shared/chart/line/line.component';
 import { PieComponent } from '../../shared/chart/pie/pie.component';
+import { UserprofileComponent } from '../../shared/userprofile/userprofile.component';
 import { AuthGuard } from '../../auth/auth.guard';
 export const adminroutes: Routes = [
   {
@@ -69,6 +70,11 @@ export const adminroutes: Routes = [
         component: LineComponent,
         canActivate: [AuthGuard],
       },
+      {
+        path: 'proFile',
+        component: UserprofileComponent,
+        canActivate: [AuthGuard],
+      },
     ],
     canActivate: [AuthGuard],
   },
@@ -80,6 +86,7 @@ export const adminroutes: Routes = [
     ManagerComponent,
     LineComponent,
     PieComponent,
+    UserprofileComponent,
   ],
   imports: [
     CommonModule,
