@@ -1,5 +1,5 @@
 export class Account {
-  username: String = '';
+  username: number = 0;
   fullname: String = '';
   permission: String = '';
   password: String = '';

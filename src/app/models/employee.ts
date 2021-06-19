@@ -1,5 +1,5 @@
 export class Employee {
-  idemployee: String = '';
+  idemployee: number;
   idteam: String = '';
   name: String = '';
   birthday: String = '';

@@ -17,10 +17,14 @@ export class LoginService {
   readonly baseUrl = '  https://localhost:44393/api/Employees';
   readonly profileUrl = 'https://localhost:44393/api/UserProfile';
   readonly TeamUrl = 'https://localhost:44393/api/Teams';
-  formData: Employee = new Employee();
+  formData: Account = new Account();
   listEmployee: Employee[];
   listTeam: Team[];
   listAccount: Account[];
+  formlogin = {
+    UserName: 12,
+    Password: '',
+  };
   constructor(private http: HttpClient, private fb: FormBuilder) {}
   formModel = this.fb.group({
     UserName: ['', [Validators.required, Validators.maxLength(6)]],
@@ -56,9 +60,12 @@ export class LoginService {
     };
     return this.http.post(this.Url + '/them', body);
   }
-  login(formData) {
-    return this.http.post(this.Url + '/login', formData);
+  login(formlogin) {
+    return this.http.post(this.Url + '/login', formlogin);
   }
+  // login1() {
+  //   return this.http.post(this.Url + '/login', this.formData);
+  // }
   getUserProfile() {
     var tokenHeaders = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),

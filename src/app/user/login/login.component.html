@@ -9,7 +9,7 @@
                 <p class="login-box-msg">Hệ thống quản lý chỉ tiêu KPI</p>
                 <form #form="ngForm" autocomplete="off" (submit)=onSubmit()>
                     <div class="input-group mb-3">
-                        <input class="form-control" name="UseName" #UseName="ngModel" [(ngModel)]="formModel.UserName" type="text" placeholder="Mã nhân viên" required>
+                        <input class="form-control" type="number" name="UseName" #UseName="ngModel" [(ngModel)]="formModel.UserName" placeholder="Mã nhân viên" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { Account } from '../../models/account';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,10 +11,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   constructor(
-    private service: LoginService,
+    public service: LoginService,
     private router: Router,
     private toast: ToastrService
   ) {}
+  formData: Account = new Account();
   ngOnInit(): void {
     if (localStorage.getItem('token') != null)
       this.router.navigateByUrl('home');
