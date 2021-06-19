@@ -1,1 +1,38 @@
-<p>pie works!</p>
+<div class="container-fluid">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thống kê biểu đồ cột</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Thống kê biểu đồ cột</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <br>
+            <div class="row">
+                <div class="card">
+                    <form #form="ngForm" (submit)="onSubmit(form)">
+                        <select style="width: 250px;
+                  height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="thongKeService.formData.idkpi">
+                    <option  name="idteam" *ngFor="let kpi of service.listKpi" [value]="kpi.idkpi">{{ kpi.namekpi }}</option>
+                    </select>
+                        <button style="margin-top: -5px;
+                        margin-left: 8px;" class="btn btn-primary" type="submit">Đồng ý</button>
+                    </form>
+                    <br>
+                    <br>
+                    <p-chart type="pie" [data]="data"></p-chart>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

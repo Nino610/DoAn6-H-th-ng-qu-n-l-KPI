@@ -1,6 +1,6 @@
-export interface KPI {
-  idKPI?: string;
-  idgroupkpi?: string;
-  namegroupkpi?: string;
-  quanty?: number;
+export class Kpi {
+  idkpi: String = '';
+  idgroupkpi: string = '';
+  namegroupkpi: string = '';
+  quanty: number;
 }

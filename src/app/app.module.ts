@@ -20,14 +20,8 @@ import { StaffModule } from './main/staff/staff.module';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth.guard';
+import { LineComponent } from './shared/chart/line/line.component';
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'home',
-  //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
-  // },
-
   {
     path: 'login',
     component: LoginComponent,
