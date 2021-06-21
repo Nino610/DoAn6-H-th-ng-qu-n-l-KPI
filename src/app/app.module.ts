@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth.guard';
 import { LineComponent } from './shared/chart/line/line.component';
+import { HomeComponent } from './shared/home/home.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -49,6 +50,7 @@ const routes: Routes = [
     RegisterComponent,
     AdminComponent,
     StaffComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

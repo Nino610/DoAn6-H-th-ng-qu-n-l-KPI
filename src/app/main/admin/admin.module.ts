@@ -32,6 +32,8 @@ import { LineComponent } from '../../shared/chart/line/line.component';
 import { PieComponent } from '../../shared/chart/pie/pie.component';
 import { UserprofileComponent } from '../../shared/userprofile/userprofile.component';
 import { AuthGuard } from '../../auth/auth.guard';
+import { HomeComponent } from 'src/app/shared/home/home.component';
+import { KPIComponent } from './KPI/kpi/kpi.component';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -66,8 +68,12 @@ export const adminroutes: Routes = [
         component: GroupKPIComponent,
       },
       {
+        path: 'admin/KPI',
+        component: KPIComponent,
+      },
+      {
         path: 'home',
-        component: LineComponent,
+        component: HomeComponent,
         canActivate: [AuthGuard],
       },
       {
@@ -99,6 +105,7 @@ export const adminroutes: Routes = [
     LineComponent,
     PieComponent,
     UserprofileComponent,
+    KPIComponent,
   ],
   imports: [
     CommonModule,
