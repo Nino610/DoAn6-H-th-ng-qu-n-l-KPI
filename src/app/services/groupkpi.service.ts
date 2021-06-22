@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Group } from '../models/groupKPI';
+import { GroupKPI } from '../models/groupKPI';
 @Injectable({
   providedIn: 'root',
 })
 export class GroupkpiService {
   readonly baseUrl = 'https://localhost:44393/api/GroupKpis';
-  formData: Group = new Group();
-  listGroup: Group[];
+  formData: GroupKPI = new GroupKPI();
+  listGroup: GroupKPI[];
   constructor(private http: HttpClient) {}
   post() {
     return this.http.post(this.baseUrl + '/them', this.formData);
@@ -16,7 +16,7 @@ export class GroupkpiService {
     return this.http
       .get(this.baseUrl)
       .toPromise()
-      .then((res) => (this.listGroup = res as Group[]));
+      .then((res) => (this.listGroup = res as GroupKPI[]));
   }
   put() {
     return this.http.put(
@@ -24,7 +24,7 @@ export class GroupkpiService {
       this.formData
     );
   }
-  delete(id: String) {
+  delete(id: number) {
     return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
 }

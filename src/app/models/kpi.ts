@@ -1,6 +1,6 @@
 export class Kpi {
-  idkpi: String = '';
+  idkpi: number;
   idgroupkpi: string = '';
-  namegroupkpi: string = '';
+  namekpi: string = '';
   quanty: number;
 }

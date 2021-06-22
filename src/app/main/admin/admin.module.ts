@@ -106,6 +106,7 @@ export const adminroutes: Routes = [
     PieComponent,
     UserprofileComponent,
     KPIComponent,
+    GroupKPIComponent,
   ],
   imports: [
     CommonModule,

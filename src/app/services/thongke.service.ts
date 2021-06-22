@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Group } from '../models/groupKPI';
 import { Kpi } from '../models/kpi';
 import { Employee } from '../models/employee';
 import { Caculator } from '../models/caculator';

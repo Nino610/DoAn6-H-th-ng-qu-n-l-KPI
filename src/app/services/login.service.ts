@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Manager } from '../models/manager';
-import { Group } from '../models/groupKPI';
+import { GroupKPI } from '../models/groupKPI';
 import { Team } from '../models/team';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../models/employee';
