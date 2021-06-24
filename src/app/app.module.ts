@@ -43,8 +43,6 @@ const routes: Routes = [
     NavbarComponent,
     FooterComponent,
     SumDataComponent,
-    TargetListComponent,
-    ProgressListComponent,
     LoginComponent,
     UnpageComponent,
     RegisterComponent,

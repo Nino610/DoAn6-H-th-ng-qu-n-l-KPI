@@ -15,6 +15,7 @@ export class KpiService {
   readonly targetListUrl = 'https://localhost:44393/api/Targetlists';
   formData: Kpi = new Kpi();
   listKpi: Kpi[];
+  groupKPI: GroupKPI = new GroupKPI();
   formDataTarget: TargetListKpi = new TargetListKpi();
   listTarget: TargetListKpi[];
   listGroupKpi: GroupKPI[];
@@ -88,5 +89,8 @@ export class KpiService {
   }
   deleteTarget(id: number) {
     return this.http.delete(this.targetListUrl + '/xoa/' + id);
+  }
+  getKpiFromGroupId(id) {
+    return this.http.get(this.baseUrl + '/get/' + id);
   }
 }

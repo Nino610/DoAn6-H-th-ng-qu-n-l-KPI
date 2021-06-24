@@ -10,6 +10,7 @@ import { Team } from '../models/team';
 export class TeamService {
   readonly baseUrl = 'https://localhost:44393/api/Managers';
   readonly GroupKpiUrl = 'https://localhost:44393/api/GroupKpis';
+  readonly teamUrl = 'https://localhost:44393/api/teams';
   formData: Team = new Team();
   listTeam: Team[];
   listGroup: GroupKPI[];
@@ -20,6 +21,12 @@ export class TeamService {
   get() {
     return this.http
       .get(this.baseUrl)
+      .toPromise()
+      .then((res) => (this.listTeam = res as Team[]));
+  }
+  getTeam() {
+    return this.http
+      .get(this.teamUrl)
       .toPromise()
       .then((res) => (this.listTeam = res as Team[]));
   }

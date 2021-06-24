@@ -1,1 +1,132 @@
-<p>progress-list works!</p>
+<div class="container-fluid">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thông tin chỉ tiêu</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Thông tin chỉ tiêu</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Thêm"></p-button>
+            <br>
+            <br>
+            <div class="row">
+                <div class="card">
+                    <p-table #dt1 [value]="listProgressKpi" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idkpi','idgroupkpi','namekpi','quanty']">
+                        <ng-template pTemplate="header">
+                            <div class="p-d-flex">
+                                <span class="p-input-icon-left p-ml-auto">
+                                  <i class="pi pi-search"></i>
+                                  <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Tìm kiếm thông tin" />
+                              </span>
+                                <br/>
+                                <div class="export" style="display:flex;margin-top: 10px;">
+                                    <button type="button" title="Xuất Word" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-o" (click)="dt1.exportCSV()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                                    <button type="button" title="Xuất Excel" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                                    <button type="button" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                                </div>
+                            </div>
+
+                            <tr>
+                                <th style="text-align: center;" pSortableColumn="idkpi">Mã chỉ tiêu
+                                    <p-sortIcon field="idkpi"></p-sortIcon>
+                                </th>
+                                <th style="text-align: center;" pSortableColumn="idgroupkpi">Tên chỉ tiêu
+                                    <p-sortIcon field="idgroupkpi"></p-sortIcon>
+                                </th>
+                                <th style="text-align: center;" pSortableColumn="namekpi">Thời gian bắt đầu
+                                    <p-sortIcon field="namekpi"></p-sortIcon>
+                                </th>
+                                <th style="text-align: center;" pSortableColumn="quanty">Thời gian kết thúc
+                                    <p-sortIcon field="quanty"></p-sortIcon>
+                                </th>
+                                <th style="text-align: center;" pSortableColumn="quanty">Hoàn thành
+                                    <p-sortIcon field="quanty"></p-sortIcon>
+                                </th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-data>
+                            <tr>
+                                <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
+                                <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
+                                <td style="text-align: center;" field="quanty">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
+                                <td style="text-align: center;" field="quanty">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
+                                <td style="text-align: center;" field="idgroupkpi">{{ data.complete }}</td>
+
+                                <td>
+                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
+                                    <button style="margin-right: 5px; width:30px" (click)="delete(data.idkpi)" pButton type="button" icon="pi pi-trash"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- form Thêm -->
+    <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+            <input type="hidden" name="idmanager" [value]="service.formData.idkpi">
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        Tên chỉ tiêu
+                        <input class="form-control" type="text" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formData.namekpi"></div>
+                    <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
+                        <select style="width: 192px;
+                  height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
+                    <option  name="idgroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group.idgroupkpi">{{ group.namegroupkpi }}</option>
+              </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Số lượng
+                        <input class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
+            </div>
+        </form>
+
+    </p-dialog>
+    <!-- form Sửa -->
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
+            <input type="hidden" name="idkpi" [value]="service.formData.idkpi">
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        Tên chỉ tiêu
+                        <input class="form-control" type="text" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formData.namekpi"></div>
+                    <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
+                        <select style="width: 192px;
+                    height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
+                      <option  name="idgroupkpi" *ngFor="let team of service.listGroupKpi"  [value]="team.idgroupkpi">{{ team.namegroupkpi }} {{ team.idgroupkpi }}</option>
+                </select>
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Số lượng
+                        <input class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty" type="number">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasicUpdate=false " label="No "></p-button>
+            </div>
+        </form>
+    </p-dialog>
+</div>

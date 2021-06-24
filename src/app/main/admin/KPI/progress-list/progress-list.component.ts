@@ -63,4 +63,51 @@ export class ProgressListComponent implements OnInit {
       );
     });
   }
+  onSubmit(form: NgForm) {
+    this.insert(form);
+  }
+  onSubmitUpdate(form1: NgForm) {
+    this.update(form1);
+  }
+  reset(form: NgForm) {
+    form.form.reset();
+    this.service.formData = new Kpi();
+  }
+  displayUpdateForm(data: Kpi) {
+    this.displayBasicUpdate = true;
+    // this.service.formData = data;
+    this.service.formData = Object.assign({}, data);
+  }
+  insert(form: NgForm) {
+    this.service.post().subscribe(
+      (res) => {
+        this.reset(form);
+        this.service.get().then((data) => (this.listKPI = data));
+        this.toast.success('Thêm thành công!');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  update(form1: NgForm) {
+    this.service.put().subscribe(
+      (res) => {
+        this.reset(form1);
+        this.service.get().then((data) => (this.listKPI = data));
+        this.toast.success('Sửa thành công!');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  delete(id: number) {
+    if (confirm('Bạn có muốn xóa dữ liệu không?')) {
+      this.service.delete(id).subscribe((res) => {
+        this.service.get().then((data) => (this.listKPI = data));
+        this.toast.error('Thông báo', 'Xóa thành công');
+      });
+    }
+  }
 }

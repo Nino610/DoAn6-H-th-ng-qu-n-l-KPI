@@ -107,6 +107,8 @@ export const adminroutes: Routes = [
     UserprofileComponent,
     KPIComponent,
     GroupKPIComponent,
+    TargetListComponent,
+    ProgressListComponent,
   ],
   imports: [
     CommonModule,
