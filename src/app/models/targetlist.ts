@@ -1,11 +1,12 @@
 export class TargetListKpi {
+  idtarget: number;
   idkpi: number;
   namekpi: string = '';
   idgroupkpi: string = '';
   namegroupkpi: string = '';
   idteam: number;
   nameteam: string = '';
-  idemployee: string = '';
+  idemployees: string = '';
   nameemployee: string = '';
   namemanager: string = '';
   quanty: number;

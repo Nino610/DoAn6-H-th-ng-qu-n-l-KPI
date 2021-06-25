@@ -93,4 +93,8 @@ export class KpiService {
   getKpiFromGroupId(id) {
     return this.http.get(this.baseUrl + '/get/' + id);
   }
+  getKpiFromName(name)
+  {
+    return this.http.get(this.baseUrl + '/getFromName/' + name);
+  }
 }

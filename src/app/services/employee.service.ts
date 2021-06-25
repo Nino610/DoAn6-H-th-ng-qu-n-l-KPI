@@ -42,4 +42,12 @@ export class EmployeeService {
   delete(id: String) {
     return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
+   getEmployeeFormIdTeam(id)
+  {
+    return this.http.get(this.baseUrl+'/getFromIdTeam/'+id);
+  }
+   getEmployeeFormName(name)
+  {
+    return this.http.get(this.baseUrl+'/getFromName/'+name);
+  }
 }

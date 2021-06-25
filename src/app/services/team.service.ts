@@ -45,4 +45,5 @@ export class TeamService {
   delete(id: String) {
     return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
+ 
 }

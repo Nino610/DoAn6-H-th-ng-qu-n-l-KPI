@@ -4,8 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { GroupkpiService } from 'src/app/services/groupkpi.service';
 import { NgForm } from '@angular/forms';
 import { GroupKPI } from '../../../../models/groupKPI';
+import { Employee } from '../../../../models/employee';
 import { Router } from '@angular/router';
 import { KpiService } from 'src/app/services/kpi.service';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { LoginService } from 'src/app/services/login.service';
 import { TargetListKpi } from '../../../../models/targetList';
 import { TeamService } from 'src/app/services/team.service';
 import { Team } from 'src/app/models/team';
@@ -15,6 +18,9 @@ import { Team } from 'src/app/models/team';
   styleUrls: ['./target-list.component.css'],
 })
 export class TargetListComponent implements OnInit {
+  ob: Team=new Team();
+  obGr: GroupKPI=new GroupKPI();
+  obKpi: Kpi=new Kpi();
   listKPI: Kpi[];
   listKpiFromGroupKpi: any;
   listTeam: Team[];
@@ -25,13 +31,19 @@ export class TargetListComponent implements OnInit {
   displayBasicUpdate: boolean = false;
   statuses: any[];
   loading: boolean = true;
+  listEmpFromName: Employee[];
+  listEmployeeFromTeam: Kpi[];
   idgroupkpi: any;
+  nameKpi:any;
   idGroup: number;
+  userDetail: any;
   activityValues: number[] = [0, 100];
   constructor(
     public service: KpiService,
     public groupkpiService: GroupkpiService,
     public teamService: TeamService,
+    public employeeService: EmployeeService,
+    public loginService: LoginService,
     private toast: ToastrService,
     private router: Router
   ) {}
@@ -39,6 +51,15 @@ export class TargetListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getTarget().then((data) => (this.listTargetKpi = data));
     this.teamService.getTeam().then((data) => (this.listTeam = data));
+    this.loginService.getUserProfile().subscribe(
+      (res) => {
+        this.userDetail = res;
+        this.service.formDataTarget.namemanager=this.userDetail.name;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
     this.service
       .getGroupKpi()
       .then((dataGroupKpi) => (this.listGroupKpi = dataGroupKpi));
@@ -87,10 +108,10 @@ export class TargetListComponent implements OnInit {
     this.service.formData = Object.assign({}, data);
   }
   insert(form: NgForm) {
-    this.service.post().subscribe(
+    this.service.postTarget().subscribe(
       (res) => {
         this.reset(form);
-        this.service.get().then((data) => (this.listKPI = data));
+        this.service.getTarget().then((data) => (this.listTargetKpi = data));
         this.toast.success('Thêm thành công!');
       },
       (err) => {
@@ -119,9 +140,37 @@ export class TargetListComponent implements OnInit {
     }
   }
   getKpi(event) {
-    this.service.getKpiFromGroupId(event.target.value).subscribe((res) => {
-      this.listKpiFromGroupKpi = res;
+    this.obGr= JSON.parse(event.target.value);
+    this.service.getKpiFromGroupId(this.obGr.idgroupkpi).subscribe((res) => {
+    this.listKpiFromGroupKpi = res;
+     this.service.formDataTarget.idgroupkpi=this.obGr.idgroupkpi;
+     this.service.formDataTarget.namegroupkpi=this.obGr.namegroupkpi;
+     this.service.formDataTarget.idkpi=this.obGr.idkpi;
     });
   }
-  getEmployee(event) {}
+  getEmployee(event) {
+    this.ob=JSON.parse(event.target.value);
+    this.employeeService.getEmployeeFormIdTeam(this.ob.idteam).subscribe((res)=>{
+    this.listEmployeeFromTeam=res;
+    });
+    this.service.formDataTarget.idteam=this.ob.idteam;
+    this.service.formDataTarget.nameteam=this.ob.nameteam;
+  }
+  getKpiFromName(event)
+  {
+    // this.obKpi=JSON.parse(this.nameKpi);
+    this.service.getKpiFromName(event.target.value).subscribe((res)=>{
+    this.listKPI=res;
+    this.service.formDataTarget.idkpi=this.listKPI[0].idkpi;
+    });
+ 
+  }
+  getEmployeeFromName(event)
+  {
+     this.employeeService.getEmployeeFormName(event.target.value).subscribe((res)=>{
+     this.listEmpFromName=res;
+     this.service.formDataTarget.idemployees=this.listEmpFromName[0].idemployee;
+    });
+   
+  }
 }
