@@ -1,5 +1,5 @@
 export class Team {
-  idteam: string = '';
+  idteam: number;
   nameteam: string = '';
   quanty: number = 0;
 }

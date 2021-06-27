@@ -61,11 +61,12 @@
                                 <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
                                 <td style="text-align: center;" field="quanty">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
                                 <td style="text-align: center;" field="quanty">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
-                                <td style="text-align: center;" field="idgroupkpi">{{ data.complete }}</td>
-
+                                <td style="text-align: center;" field="namekpi">{{ data.nameemployee }}</td>
+                                <td *ngIf="data.complete" style="text-align: center;" field="complete">Hoàn thành</td>
+                                <td *ngIf="!data.complete" style="text-align: center;" field="complete">Chưa hoàn thành</td>
                                 <td>
-                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
-                                    <button style="margin-right: 5px; width:30px" (click)="delete(data.idkpi)" pButton type="button" icon="pi pi-trash"></button>
+                                    <button (click)=" displayUpdateForm(data) " pButton type="button " style="margin-right: 5px; width:30px " icon="pi pi-pencil "></button>
+                                    <button style="margin-right: 5px; width:30px " (click)="delete(data.idkpi) " pButton type="button " icon="pi pi-trash "></button>
                                 </td>
                             </tr>
                         </ng-template>
@@ -75,56 +76,54 @@
         </div>
     </section>
     <!-- form Thêm -->
-    <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
-            <input type="hidden" name="idmanager" [value]="service.formData.idkpi">
-            <div class="form">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
+    <p-dialog header="Nhập thông tin " [(visible)]="displayBasic " [style]="{width: '50vw'} " [baseZIndex]="10000 ">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form) ">
+            <input type="hidden " name="idmanager " [value]="service.formData.idkpi ">
+            <div class="form ">
+                <div class="row ">
+                    <div class="col-md-4 mb-3 ">
                         Tên chỉ tiêu
-                        <input class="form-control" type="text" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formData.namekpi"></div>
+                        <input class="form-control " type="text " name="namekpi " #namekpi="ngModel" [(ngModel)]="service.formData.namekpi "></div>
                     <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
-                        <select style="width: 192px;
-                  height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
-                    <option  name="idgroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group.idgroupkpi">{{ group.namegroupkpi }}</option>
+                        <select style="width: 192px; height: 38px; " name="idgroupkpi " #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi ">
+                    <option  name="idgroupkpi " *ngFor="let group of groupkpiService.listGroup " [value]="group.idgroupkpi ">{{ group.namegroupkpi }}</option>
               </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Số lượng
-                        <input class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty" type="number">
+                        <input class="form-control " name="quanty " #quanty="ngModel" [(ngModel)]="service.formData.quanty " type="number ">
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+            <div class="form-group ">
+                <button class="btn btn-primary " type="submit " [disabled]="form.invalid ">Đồng ý</button>
                 <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
             </div>
         </form>
 
     </p-dialog>
     <!-- form Sửa -->
-    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
-            <input type="hidden" name="idkpi" [value]="service.formData.idkpi">
-            <div class="form">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
+    <p-dialog header="Thông tin sửa " [(visible)]="displayBasicUpdate " [style]="{width: '50vw'} " [baseZIndex]="10000 ">
+        <form novalidate #form1="ngForm" autocomplete="off " (submit)="onSubmitUpdate(form1) ">
+            <input type="hidden " name="idkpi " [value]="service.formData.idkpi ">
+            <div class="form ">
+                <div class="row ">
+                    <div class="col-md-4 mb-3 ">
                         Tên chỉ tiêu
-                        <input class="form-control" type="text" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formData.namekpi"></div>
+                        <input class="form-control " type="text " name="namekpi " #namekpi="ngModel" [(ngModel)]="service.formData.namekpi "></div>
                     <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
-                        <select style="width: 192px;
-                    height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
-                      <option  name="idgroupkpi" *ngFor="let team of service.listGroupKpi"  [value]="team.idgroupkpi">{{ team.namegroupkpi }} {{ team.idgroupkpi }}</option>
+                        <select style="width: 192px; height: 38px; " name="idgroupkpi " #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi ">
+                      <option  name="idgroupkpi " *ngFor="let team of service.listGroupKpi "  [value]="team.idgroupkpi ">{{ team.namegroupkpi }} {{ team.idgroupkpi }}</option>
                 </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Số lượng
-                        <input class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty" type="number">
+                        <input class="form-control " name="quanty " #quanty="ngModel" [(ngModel)]="service.formData.quanty " type="number ">
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
+            <div class="form-group ">
+                <button class="btn btn-primary " type="submit " [disabled]="form.invalid ">Đồng ý</button>
                 <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasicUpdate=false " label="No "></p-button>
             </div>
         </form>

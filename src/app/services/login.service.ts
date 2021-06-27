@@ -81,4 +81,19 @@ export class LoginService {
       .toPromise()
       .then((res) => (this.listAccount = res as Account[]));
   }
+  //phân quyền
+  roleMatch(allowedRoles): boolean {
+    var isMatch = false;
+    var payload = JSON.parse(
+      window.atob(localStorage.getItem('token').split('.')[1])
+    );
+    var userRoles = payload.role;
+    allowedRoles.forEach((element) => {
+      if (userRoles == element) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
 }

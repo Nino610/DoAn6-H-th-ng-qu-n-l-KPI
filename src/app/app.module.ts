@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth.guard';
 import { LineComponent } from './shared/chart/line/line.component';
 import { HomeComponent } from './shared/home/home.component';
+import { ForbiddenComponent } from './shared/forbidden/forbidden.component';
+import { TargetlistuserComponent } from './main/staff/targetlistuser/targetlistuser.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -32,23 +34,38 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'forbidden',
+    component: ForbiddenComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'user/targetlist',
+    component: TargetlistuserComponent,
+    canActivate: [AuthGuard],
+    data: { permittedRoles: ['2'] },
+  },
+  {
     path: '**',
     component: UnpageComponent,
   },
 ];
 @NgModule({
   declarations: [
+    TargetlistuserComponent,
     AppComponent,
     SidebarComponent,
     NavbarComponent,
     FooterComponent,
-    SumDataComponent,
     LoginComponent,
     UnpageComponent,
     RegisterComponent,
     AdminComponent,
     StaffComponent,
     HomeComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

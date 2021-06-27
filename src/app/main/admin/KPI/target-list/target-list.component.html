@@ -37,7 +37,7 @@
                             </div>
 
                             <tr>
-                            <th style="text-align: center;" pSortableColumn="idkpi">Mã chỉ tiêu
+                                <th style="text-align: center;" pSortableColumn="idkpi">Mã chỉ tiêu
                                     <p-sortIcon field="idkpi"></p-sortIcon>
                                 </th>
                                 <th style="text-align: center;" pSortableColumn="namekpi">Chỉ tiêu giao
@@ -46,7 +46,7 @@
                                 <th style="text-align: center;" pSortableColumn="nameemployee">Nhân viên nhận
                                     <p-sortIcon field="nameemployee"></p-sortIcon>
                                 </th>
-                                 <th style="text-align: center;" pSortableColumn="nameteam">Team
+                                <th style="text-align: center;" pSortableColumn="nameteam">Team
                                     <p-sortIcon field="nameteam"></p-sortIcon>
                                 </th>
                                 <th style="text-align: center;" pSortableColumn="starttime">Thời gian bắt đầu
@@ -66,14 +66,14 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-data>
                             <tr>
-                             <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
+                                <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
                                 <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
                                 <td style="text-align: center;" field="nameemployee">{{ data.nameemployee }}</td>
-                                 <td style="text-align: center;" field="nameteam">{{ data.nameteam }}</td>
+                                <td style="text-align: center;" field="nameteam">{{ data.nameteam }}</td>
                                 <td style="text-align: center;" field="starttime">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
                                 <td style="text-align: center;" field="endtime">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
-                                  <td style="text-align: center;" field="quanty">{{ data.quanty }}</td>
-                                    <td style="text-align: center;" field="namemanager">{{ data.namemanager }}</td>
+                                <td style="text-align: center;" field="quanty">{{ data.quanty }}</td>
+                                <td style="text-align: center;" field="namemanager">{{ data.namemanager }}</td>
                                 <td>
                                     <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
                                     <button style="margin-right: 5px; width:30px" (click)="delete(data.idtarget)" pButton type="button" icon="pi pi-trash"></button>
@@ -90,46 +90,46 @@
         <form novalidate #form="ngForm" (submit)="onSubmit(form)">
             <input type="hidden" name="idtarget" [value]="service.formDataTarget.idtarget">
             <div class="form">
-              Tên quản lý giao chỉ tiêu:
-             <input disabled name="namemanager" [value]="service.formDataTarget.namemanager">
-             <div class="row">
-                <div class="col-md-3 mb-3 ">
-                Mã nhóm chỉ tiêu
-                  <input style="width: 120px;" disabled name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataTarget.idgroupkpi">
-                </div>
+                Tên quản lý giao chỉ tiêu:
+                <input disabled name="namemanager" [value]="service.formDataTarget.namemanager">
+                <div class="row">
+                    <div class="col-md-3 mb-3 ">
+                        Mã nhóm chỉ tiêu
+                        <input style="width: 120px;" disabled name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataTarget.idgroupkpi">
+                    </div>
                     <div class="col-md-4 mb-3 ">
-                    Tên nhóm chỉ tiêu
+                        Tên nhóm chỉ tiêu
                         <select style="width: 192px;
-                height: 38px;" name="namegroupkpi"  (change)="getKpi($event)">
+                height: 38px;" name="namegroupkpi" (change)="getKpi($event)">
                   <option  name="namegroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group|json">{{ group.namegroupkpi }}</option>
                     </select>
                     </div>
-                    <div class="col-md-5 mb-3 ">Tên chỉ tiêu 
+                    <div class="col-md-5 mb-3 ">Tên chỉ tiêu
                         <select style="width: 280px; height: 38px;" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formDataTarget.namekpi" (change)="getKpiFromName($event)">
                 <option  name="namekpi" *ngFor="let kpi of listKpiFromGroupKpi" [value]="kpi.namekpi">{{ kpi.namekpi }}</option>
                         </select>
                     </div>
                 </div>
-             <div class="row">
-              <div class="col-md-3 mb-3 ">
-                Mã Team (đội/nhóm)
-                  <input style="width: 120px;" disabled name="idteam" #idteam="ngModel" [(ngModel)]="service.formDataTarget.idteam">
-                </div>
-              <div class="col-md-4 mb-3 ">
-                 Tên Team (đội/nhóm)
-                <select style="width: 192px; height: 38px;" name="nameteam" (change)="getEmployee($event)">
+                <div class="row">
+                    <div class="col-md-3 mb-3 ">
+                        Mã Team (đội/nhóm)
+                        <input style="width: 120px;" disabled name="idteam" #idteam="ngModel" [(ngModel)]="service.formDataTarget.idteam">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Tên Team (đội/nhóm)
+                        <select style="width: 192px; height: 38px;" name="nameteam" (change)="getEmployee($event)">
                  <option  name="nameteam" *ngFor="let team of teamService.listTeam" [value]="team|json">{{ team.nameteam }}</option>
                </select>
                     </div>
-              <div class="col-md-5 mb-3 ">
-                 Tên nhân viên
-               <select style="width: 280px;;
+                    <div class="col-md-5 mb-3 ">
+                        Tên nhân viên
+                        <select style="width: 280px;;
                 height: 38px;" name="nameemployee" #nameemployee="ngModel" [(ngModel)]="service.formDataTarget.nameemployee" (change)="getEmployeeFromName($event)">
                  <option  name="name" *ngFor="let emp of listEmployeeFromTeam" [value]="emp.name">{{ emp.name }}</option>
                </select>
                     </div>
                 </div>
-             <div class="row">
+                <div class="row">
                     <div class="col-md-3 mb-3 ">
                         Số lượng
                         <input style="width:120px" class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formDataTarget.quanty" type="number">
@@ -151,30 +151,68 @@
         </form>
     </p-dialog>
     <!-- form Sửa -->
-    <!-- <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
-            <input type="hidden" name="idkpi" [value]="service.formDataTarget.idkpi">
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+            <input type="hidden" name="idtarget" [value]="service.formDataTarget.idtarget">
             <div class="form">
+                Tên quản lý giao chỉ tiêu:
+                <input disabled name="namemanager" [value]="service.formDataTarget.namemanager">
                 <div class="row">
-                    <div class="col-md-4 mb-3">
-                        Tên chỉ tiêu
-                        <input class="form-control" type="text" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formDataTarget.namekpi"></div>
-                    <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
-                        <select style="width: 192px;
-                  height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataTarget.idgroupkpi">
-                    <option  name="idgroupkpi" *ngFor="let team of service.listGroupKpi"  [value]="team.idgroupkpi">{{ team.namegroupkpi }} {{ team.idgroupkpi }}</option>
-              </select>
+                    <div class="col-md-3 mb-3 ">
+                        Mã nhóm chỉ tiêu
+                        <input style="width: 120px;" disabled name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataTarget.idgroupkpi">
                     </div>
                     <div class="col-md-4 mb-3 ">
+                        Tên nhóm chỉ tiêu
+                        <select style="width: 192px;
+                height: 38px;" name="namegroupkpi" (change)="getKpi($event)">
+                  <option  name="namegroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group|json">{{ group.namegroupkpi }}</option>
+                    </select>
+                    </div>
+                    <div class="col-md-5 mb-3 ">Tên chỉ tiêu
+                        <select style="width: 280px; height: 38px;" name="namekpi" #namekpi="ngModel" [(ngModel)]="service.formDataTarget.namekpi" (change)="getKpiFromName($event)">
+                <option  name="namekpi" *ngFor="let kpi of listKpiFromGroupKpi" [value]="kpi.namekpi">{{ kpi.namekpi }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3 ">
+                        Mã Team (đội/nhóm)
+                        <input style="width: 120px;" disabled name="idteam" #idteam="ngModel" [(ngModel)]="service.formDataTarget.idteam">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Tên Team (đội/nhóm)
+                        <select style="width: 192px; height: 38px;" name="nameteam" (change)="getEmployee($event)">
+                 <option  name="nameteam" *ngFor="let team of teamService.listTeam" [value]="team|json">{{ team.nameteam }}</option>
+               </select>
+                    </div>
+                    <div class="col-md-5 mb-3 ">
+                        Tên nhân viên
+                        <select style="width: 280px;;
+                height: 38px;" name="nameemployee" #nameemployee="ngModel" [(ngModel)]="service.formDataTarget.nameemployee" (change)="getEmployeeFromName($event)">
+                 <option  name="name" *ngFor="let emp of listEmployeeFromTeam" [value]="emp.name">{{ emp.name }}</option>
+               </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3 ">
                         Số lượng
-                        <input class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formDataTarget.quanty" type="number">
+                        <input style="width:120px" class="form-control" name="quanty" #quanty="ngModel" [(ngModel)]="service.formDataTarget.quanty" type="number">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Thời gian bắt đầu
+                        <input class="form-control" type="date" name="starttime" #starttime="ngModel" [(ngModel)]="service.formDataTarget.starttime">
+                    </div>
+                    <div class="col-md-5 mb-3 ">
+                        Thời gian kết thúc
+                        <input class="form-control" type="date" name="endtime" #endtime="ngModel" [(ngModel)]="service.formDataTarget.endtime">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Đồng ý</button>
-                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasicUpdate=false " label="No "></p-button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
             </div>
         </form>
-    </p-dialog> -->
+    </p-dialog>
 </div>

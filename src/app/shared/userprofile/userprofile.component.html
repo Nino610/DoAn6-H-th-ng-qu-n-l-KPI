@@ -28,7 +28,7 @@
                             </div>
                             <h3 class="profile-username text-center">{{ userDetail.name }}</h3>
 
-                            <p class="text-muted text-center">{{ userDetail.idemployee }} - {{ userDetail.permission }}</p>
+                            <p *ngIf="userDetail.permission" class="text-muted text-center">{{ userDetail.idemployee }} - Quản lý</p>
                             <form novalidate #form="ngForm" (submit)="onSubmit(form)">
                                 <input type="hidden" name="idmanager" [value]="ProfileService.formData.idemployee">
                                 <ul class="list-group list-group-unbordered mb-3">

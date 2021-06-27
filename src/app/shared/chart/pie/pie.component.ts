@@ -18,6 +18,7 @@ import { ThongKeService } from 'src/app/services/thongke.service';
 export class PieComponent implements OnInit {
   data: any;
   listCaculator: Caculator[];
+  listSelectCalculator: ['idkpi', 'namekpi', 'numberkpi'];
   listKpi: Kpi[];
   constructor(
     public service: KpiService,
@@ -42,7 +43,8 @@ export class PieComponent implements OnInit {
     this.thongKeService.get().then((data) => {
       //this.basicData.labels = data.map((a) => a.name);
       //this.basicData.datasets[0].label = data.map((a) => a.name);
-      // this.basicData.datasets[0].label = data.map((a) => a.name);
+      this.listCaculator = data;
+      this.data.labels = data.map((a) => a.namekpi);
       this.data.datasets[0].data = data.map((a) => a.completeofday);
     });
   }
@@ -51,5 +53,8 @@ export class PieComponent implements OnInit {
   }
   getPersenOfKpi(form: NgForm) {
     this.thongKeService.getPersenOfKpi();
+  }
+  getValue(event) {
+    console.log(event.target.value);
   }
 }

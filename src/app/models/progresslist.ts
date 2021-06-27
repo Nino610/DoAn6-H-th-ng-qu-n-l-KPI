@@ -1,7 +1,12 @@
 export class ProgressListKpi {
   idkpi: number;
+  idgroupkpi: number;
+  namegroupkpi: string = '';
   namekpi: string = '';
-  idemployee: string = '';
+  idemployee: number;
+  nameemployee: string = '';
+  idteam: number;
+  nameteam: string = '';
   complete: number;
   starttime: string = '';
   endtime: string = '';

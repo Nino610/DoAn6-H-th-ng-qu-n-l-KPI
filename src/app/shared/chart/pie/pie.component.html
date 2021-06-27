@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Thống kê biểu đồ cột</h1>
+                    <h1>Thống kê biểu đồ tròn</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Thống kê biểu đồ cột</li>
+                        <li class="breadcrumb-item active">Thống kê biểu đồ tròn</li>
                     </ol>
                 </div>
             </div>
@@ -20,14 +20,12 @@
             <br>
             <div class="row">
                 <div class="card">
-                    <form #form="ngForm" (submit)="onSubmit(form)">
-                        <select style="width: 250px;
-                  height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="thongKeService.formData.idkpi">
-                    <option  name="idteam" *ngFor="let kpi of service.listKpi" [value]="kpi.idkpi">{{ kpi.namekpi }}</option>
+                    <select style="width: 300px; height: 38px;" name="nameteam" (change)="getValue($event)">
+                      <option>Số lượng</option>
+                      <option value="1">Phần trăm hoàn thành trong ngày</option>
+                      <option value="2">Phần trăm hoàn thành trong tháng</option>
+                      <option value="3">Khả năng tăng trưởng</option>
                     </select>
-                        <button style="margin-top: -5px;
-                        margin-left: 8px;" class="btn btn-primary" type="submit">Đồng ý</button>
-                    </form>
                     <br>
                     <br>
                     <p-chart type="pie" [data]="data"></p-chart>

@@ -18,10 +18,11 @@ import { Team } from 'src/app/models/team';
   styleUrls: ['./target-list.component.css'],
 })
 export class TargetListComponent implements OnInit {
-  ob: Team=new Team();
-  obGr: GroupKPI=new GroupKPI();
-  obKpi: Kpi=new Kpi();
-  listKPI: Kpi[];
+  ob: Team = new Team();
+  obGr: GroupKPI = new GroupKPI();
+  obKpi: Kpi = new Kpi();
+  // listKPI: Kpi[];
+  listKPI: any;
   listKpiFromGroupKpi: any;
   listTeam: Team[];
   listGroupKpi: GroupKPI[];
@@ -31,10 +32,11 @@ export class TargetListComponent implements OnInit {
   displayBasicUpdate: boolean = false;
   statuses: any[];
   loading: boolean = true;
-  listEmpFromName: Employee[];
-  listEmployeeFromTeam: Kpi[];
+  listEmpFromName: any;
+  // listEmployeeFromTeam: Kpi[];
+  listEmployeeFromTeam: any;
   idgroupkpi: any;
-  nameKpi:any;
+  nameKpi: any;
   idGroup: number;
   userDetail: any;
   activityValues: number[] = [0, 100];
@@ -54,7 +56,7 @@ export class TargetListComponent implements OnInit {
     this.loginService.getUserProfile().subscribe(
       (res) => {
         this.userDetail = res;
-        this.service.formDataTarget.namemanager=this.userDetail.name;
+        this.service.formDataTarget.namemanager = this.userDetail.name;
       },
       (err) => {
         console.log(err);
@@ -120,10 +122,10 @@ export class TargetListComponent implements OnInit {
     );
   }
   update(form1: NgForm) {
-    this.service.put().subscribe(
+    this.service.putTarget().subscribe(
       (res) => {
         this.reset(form1);
-        this.service.get().then((data) => (this.listKPI = data));
+        this.service.getTarget().then((data) => (this.listTargetKpi = data));
         this.toast.success('Sửa thành công!');
       },
       (err) => {
@@ -133,44 +135,45 @@ export class TargetListComponent implements OnInit {
   }
   delete(id: number) {
     if (confirm('Bạn có muốn xóa dữ liệu không?')) {
-      this.service.delete(id).subscribe((res) => {
-        this.service.get().then((data) => (this.listKPI = data));
+      this.service.deleteTarget(id).subscribe((res) => {
+        this.service.getTarget().then((data) => (this.listTargetKpi = data));
         this.toast.error('Thông báo', 'Xóa thành công');
       });
     }
   }
   getKpi(event) {
-    this.obGr= JSON.parse(event.target.value);
+    this.obGr = JSON.parse(event.target.value);
     this.service.getKpiFromGroupId(this.obGr.idgroupkpi).subscribe((res) => {
-    this.listKpiFromGroupKpi = res;
-     this.service.formDataTarget.idgroupkpi=this.obGr.idgroupkpi;
-     this.service.formDataTarget.namegroupkpi=this.obGr.namegroupkpi;
-     this.service.formDataTarget.idkpi=this.obGr.idkpi;
+      this.listKpiFromGroupKpi = res;
+      this.service.formDataTarget.idgroupkpi = this.obGr.idgroupkpi;
+      this.service.formDataTarget.namegroupkpi = this.obGr.namegroupkpi;
+      this.service.formDataTarget.idkpi = this.obGr.idkpi;
     });
   }
   getEmployee(event) {
-    this.ob=JSON.parse(event.target.value);
-    this.employeeService.getEmployeeFormIdTeam(this.ob.idteam).subscribe((res)=>{
-    this.listEmployeeFromTeam=res;
-    });
-    this.service.formDataTarget.idteam=this.ob.idteam;
-    this.service.formDataTarget.nameteam=this.ob.nameteam;
+    this.ob = JSON.parse(event.target.value);
+    this.employeeService
+      .getEmployeeFormIdTeam(this.ob.idteam)
+      .subscribe((res) => {
+        this.listEmployeeFromTeam = res;
+      });
+    this.service.formDataTarget.idteam = this.ob.idteam;
+    this.service.formDataTarget.nameteam = this.ob.nameteam;
   }
-  getKpiFromName(event)
-  {
+  getKpiFromName(event) {
     // this.obKpi=JSON.parse(this.nameKpi);
-    this.service.getKpiFromName(event.target.value).subscribe((res)=>{
-    this.listKPI=res;
-    this.service.formDataTarget.idkpi=this.listKPI[0].idkpi;
+    this.service.getKpiFromName(event.target.value).subscribe((res) => {
+      this.listKPI = res;
+      this.service.formDataTarget.idkpi = this.listKPI[0].idkpi;
     });
- 
   }
-  getEmployeeFromName(event)
-  {
-     this.employeeService.getEmployeeFormName(event.target.value).subscribe((res)=>{
-     this.listEmpFromName=res;
-     this.service.formDataTarget.idemployees=this.listEmpFromName[0].idemployee;
-    });
-   
+  getEmployeeFromName(event) {
+    this.employeeService
+      .getEmployeeFormName(event.target.value)
+      .subscribe((res) => {
+        this.listEmpFromName = res;
+        this.service.formDataTarget.idemployees =
+          this.listEmpFromName[0].idemployee;
+      });
   }
 }

@@ -71,19 +71,11 @@ export const adminroutes: Routes = [
         path: 'admin/KPI',
         component: KPIComponent,
       },
-      {
-        path: 'home',
-        component: HomeComponent,
-        canActivate: [AuthGuard],
-      },
+
       {
         path: 'proFile',
         component: UserprofileComponent,
         canActivate: [AuthGuard],
-      },
-      {
-        path: '',
-        component: LineComponent,
       },
       {
         path: 'chart/line',
@@ -95,6 +87,7 @@ export const adminroutes: Routes = [
       },
     ],
     canActivate: [AuthGuard],
+    data: { permittedRoles: ['1'] },
   },
 ];
 @NgModule({
@@ -102,6 +95,7 @@ export const adminroutes: Routes = [
     DepartmentComponent,
     EmployeesComponent,
     ManagerComponent,
+    SumDataComponent,
     LineComponent,
     PieComponent,
     UserprofileComponent,
