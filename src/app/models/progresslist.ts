@@ -1,4 +1,5 @@
 export class ProgressListKpi {
+  idprogress: number;
   idkpi: number;
   idgroupkpi: number;
   namegroupkpi: string = '';

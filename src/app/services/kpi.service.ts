@@ -17,9 +17,9 @@ export class KpiService {
   listKpi: Kpi[];
   groupKPI: GroupKPI = new GroupKPI();
   formDataTarget: TargetListKpi = new TargetListKpi();
+  formDataProgress: ProgressListKpi = new ProgressListKpi();
   listTarget: TargetListKpi[];
   listGroupKpi: GroupKPI[];
-  formDataProgress: ProgressListKpi = new ProgressListKpi();
   listProgressKpi: ProgressListKpi[];
   constructor(private http: HttpClient) {}
   post() {
@@ -93,8 +93,10 @@ export class KpiService {
   getKpiFromGroupId(id) {
     return this.http.get(this.baseUrl + '/get/' + id);
   }
-  getKpiFromName(name)
-  {
+  getKpiFromName(name) {
     return this.http.get(this.baseUrl + '/getFromName/' + name);
+  }
+  getKpiFormIdEmp(id) {
+    return this.http.get(this.targetListUrl + '/getKpiFromEmployee/' + id);
   }
 }

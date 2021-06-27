@@ -42,19 +42,12 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'user/targetlist',
-    component: TargetlistuserComponent,
-    canActivate: [AuthGuard],
-    data: { permittedRoles: ['2'] },
-  },
-  {
     path: '**',
     component: UnpageComponent,
   },
 ];
 @NgModule({
   declarations: [
-    TargetlistuserComponent,
     AppComponent,
     SidebarComponent,
     NavbarComponent,

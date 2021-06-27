@@ -25,28 +25,28 @@ import { PieComponent } from '../../shared/chart/pie/pie.component';
 import { UserprofileComponent } from '../../shared/userprofile/userprofile.component';
 import { AuthGuard } from '../../auth/auth.guard';
 import { HomeComponent } from 'src/app/shared/home/home.component';
-import { ProgresslistComponent } from './progresslist/progresslist.component';
 import { StaffComponent } from './staff.component';
+import { TargetlistuserComponent } from './targetlistuser/targetlistuser.component';
+import { ProgresslistuserComponent } from './progresslistuser/progresslistuser.component';
 export const staffroutes: Routes = [
   {
     path: '',
     component: StaffComponent,
     children: [
       {
+        path: 'user/targetlist',
+        component: TargetlistuserComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'user/progresslist',
+        component: ProgresslistuserComponent,
+        canActivate: [AuthGuard],
+      },
+      {
         path: 'proFile',
         component: UserprofileComponent,
-      },
-      // {
-      //   path: 'user/progresslist',
-      //   component: ProgresslistComponent,
-      // },
-      {
-        path: 'chart/line',
-        component: LineComponent,
-      },
-      {
-        path: 'chart/pie',
-        component: PieComponent,
+        canActivate: [AuthGuard],
       },
     ],
     canActivate: [AuthGuard],
@@ -54,7 +54,7 @@ export const staffroutes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [],
+  declarations: [TargetlistuserComponent, ProgresslistuserComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgresslistComponent } from './progresslist.component';
+import { ProgresslistuserComponent } from './progresslistuser.component';
 
-describe('ProgresslistComponent', () => {
-  let component: ProgresslistComponent;
-  let fixture: ComponentFixture<ProgresslistComponent>;
+describe('ProgresslistuserComponent', () => {
+  let component: ProgresslistuserComponent;
+  let fixture: ComponentFixture<ProgresslistuserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProgresslistComponent ]
+      declarations: [ ProgresslistuserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProgresslistComponent);
+    fixture = TestBed.createComponent(ProgresslistuserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
