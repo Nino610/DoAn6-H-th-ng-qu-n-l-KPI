@@ -21,7 +21,7 @@
             <br>
             <div class="row">
                 <div class="card">
-                    <p-table #dt1 [value]="listProgressKpi" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idkpi','idgroupkpi','namekpi','quanty']">
+                    <p-table #dt1 [value]="listCaculator" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idkpi','idgroupkpi','namekpi','quanty']">
                         <ng-template pTemplate="header">
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
@@ -71,11 +71,13 @@
                             <tr>
                                 <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
                                 <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
-                                <td style="text-align: center;" field="quanty">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
-                                <td style="text-align: center;" field="quanty">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
-                                <td style="text-align: center;" field="namekpi">{{ data.nameemployee }}</td>
-                                <td *ngIf="data.complete" style="text-align: center;" field="complete">Hoàn thành</td>
-                                <td *ngIf="!data.complete" style="text-align: center;" field="complete">Chưa hoàn thành</td>
+                                <td style="text-align: center;" field="numberkpi">{{ data.numberkpi }}</td>
+                                <td style="text-align: center;" field="quanty">{{ data.kpiofday }}</td>
+                                <td style="text-align: center;" field="quanty">{{ data.cumulative }}%</td>
+                                <td style="text-align: center;" field="namekpi">{{ data.kpilastmonth }}</td>
+                                <td style="text-align: center;" field="namekpi">{{ data.completeofday }}%</td>
+                                <td style="text-align: center;" field="namekpi">{{ data.completeofmonth }}%</td>
+                                <td style="text-align: center;" field="namekpi">{{ data.growup }}%</td>
                                 <td>
                                     <button (click)=" displayUpdateForm(data) " pButton type="button " style="margin-right: 5px; width:30px " icon="pi pi-pencil "></button>
                                     <button style="margin-right: 5px; width:30px " (click)="delete(data.idkpi) " pButton type="button " icon="pi pi-trash "></button>

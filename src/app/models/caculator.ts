@@ -1,8 +1,14 @@
 export class Caculator {
-  idkpi: String = '';
-  namekpi: String = '';
-  numberkpi: String = '';
-  kpiofday: String = '';
-  completeofday: String = '';
-  completeofmonth: String = '';
+  idcal: number;
+  idkpi: number;
+  idteam: number;
+  idemployee: number;
+  namekpi: string = '';
+  numberkpi: number;
+  cumulative: number;
+  kpiofday: number;
+  completeofday: number;
+  completeofmonth: number;
+  kpilastmonth: number;
+  growup: number;
 }

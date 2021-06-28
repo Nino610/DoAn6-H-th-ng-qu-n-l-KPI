@@ -1,82 +1,90 @@
-<div class="container-fluid">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 style="text-align:center">Thông tin chi tiết người dùng</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Thông tin chi tiết người dùng</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-
-                    <!-- Profile Image -->
-                    <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-                            <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="/assets/img/photo/{{ userDetail.photo }} " alt="User profile picture">
-                            </div>
-                            <h3 class="profile-username text-center">{{ userDetail.name }}</h3>
-
-                            <p *ngIf="userDetail.permission" class="text-muted text-center">{{ userDetail.idemployee }} - Quản lý</p>
-                            <form novalidate #form="ngForm" (submit)="onSubmit(form)">
-                                <input type="hidden" name="idmanager" [value]="ProfileService.formData.idemployee">
-                                <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                        <b>Mã phòng ban</b>
-                                        <a class="float-right"><input disabled class="form-control" [value]="userDetail.idteam" type="text" name="idteam" #idteam="ngModel" [(ngModel)]="userDetail.idteam">
-                                        </a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Họ tên</b>
-                                        <a class="float-right"><input class="form-control" [value]="userDetail.name" type="text" name="name" #name="ngModel" [(ngModel)]="userDetail.name"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Ngày sinh</b>
-                                        <a class="float-right"> <input class="form-control" type="date" name="birthday" #birthday="ngModel" [(ngModel)]="userDetail.birthday"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Địa chỉ</b>
-                                        <a class="float-right"><input class="form-control" type="text" name="address" #address="ngModel" [(ngModel)]="userDetail.address"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Email</b>
-                                        <a class="float-right"><input class="form-control" type="text" name="email" #email="ngModel" [(ngModel)]="userDetail.email"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Giới tính</b>
-                                        <a class="float-right"><input class="form-control" type="text" name="gender" #email="ngModel" [(ngModel)]="userDetail.gender"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Số điện thoại</b>
-                                        <a class="float-right"><input class="form-control" type="text" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="userDetail.phonenumber"></a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Ảnh đại diện</b>
-                                        <a class="float-right"><input type="file" #photo accept="image/*" (change)="handleFileInput($event)"></a>
-                                    </li>
-                                </ul>
-                                <button class="btn btn-success" type="submit" [disabled]="form.invalid"> Sửa đổi</button>
-                            </form>
-
-                        </div>
-                        <!-- /.card-body -->
+<app-sidebar>
+</app-sidebar>
+<app-navbar></app-navbar>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 style="text-align:center">Thông tin chi tiết người dùng</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Thông tin chi tiết người dùng</li>
+                        </ol>
                     </div>
                 </div>
-                <div class="col-md-2"></div>
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </section>
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+
+                        <!-- Profile Image -->
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle" src="/assets/img/photo/{{ userDetail.photo }} " alt="User profile picture">
+                                </div>
+                                <h3 class="profile-username text-center">{{ userDetail.name }}</h3>
+
+                                <p *ngIf="userDetail.permission==2" class="text-muted text-center">{{ userDetail.idemployee }} - Nhân viên</p>
+                                <p *ngIf="userDetail.permission==1" class="text-muted text-center">{{ userDetail.idemployee }} - Quản lý</p>
+                                <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+                                    <input type="hidden" name="idmanager" [value]="ProfileService.formData.idemployee">
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>Mã phòng ban</b>
+                                            <a class="float-right"><input disabled class="form-control" [value]="userDetail.idteam" type="text" name="idteam" #idteam="ngModel" [(ngModel)]="userDetail.idteam">
+                                            </a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Họ tên</b>
+                                            <a class="float-right"><input class="form-control" [value]="userDetail.name" type="text" name="name" #name="ngModel" [(ngModel)]="userDetail.name"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Ngày sinh</b>
+                                            <a class="float-right"> <input class="form-control" type="date" name="birthday" #birthday="ngModel" [(ngModel)]="userDetail.birthday "></a>
+                                            <!-- <input type="text" name="birthday" [value]="userDetail.birthday" #birthday="ngModel" [(ngModel)]="userDetail.birthday"> -->
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Địa chỉ</b>
+                                            <a class="float-right"><input class="form-control" type="text" name="address" #address="ngModel" [(ngModel)]="userDetail.address"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Email</b>
+                                            <a class="float-right"><input class="form-control" type="text" name="email" #email="ngModel" [(ngModel)]="userDetail.email"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Giới tính</b>
+                                            <a class="float-right"><input class="form-control" type="text" name="gender" #email="ngModel" [(ngModel)]="userDetail.gender"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Số điện thoại</b>
+                                            <a class="float-right"><input class="form-control" type="text" name="phonenumber" #phonenumber="ngModel" [(ngModel)]="userDetail.phonenumber"></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Ảnh đại diện</b>
+                                            <a class="float-right"><input type="file" #photo accept="image/*" (change)="handleFileInput($event)"></a>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-success" type="submit" [disabled]="form.invalid"> Sửa đổi</button>
+                                </form>
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+    </div>
 </div>
+<app-footer></app-footer>

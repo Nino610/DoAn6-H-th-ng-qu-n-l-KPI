@@ -7,6 +7,8 @@ import { GroupKPI } from '../../../models/groupKPI';
 import { Router } from '@angular/router';
 import { KpiService } from 'src/app/services/kpi.service';
 import { ProgressListKpi } from '../../../models/progresslist';
+import { ThongKeService } from 'src/app/services/thongke.service';
+import { Caculator } from 'src/app/models/caculator';
 
 @Component({
   selector: 'app-sum-data',
@@ -15,27 +17,28 @@ import { ProgressListKpi } from '../../../models/progresslist';
 })
 export class SumDataComponent implements OnInit {
   constructor(
-    public service: KpiService,
+    public service: ThongKeService,
     public groupkpiService: GroupkpiService,
     private toast: ToastrService,
     private router: Router
   ) {}
   listKPI: Kpi[];
-  listGroupKpi: GroupKPI[];
-  listProgressKpi: ProgressListKpi[];
+  listCaculator: Caculator[];
   basicOptions: any;
   displayBasic: boolean = false;
   displayBasicUpdate: boolean = false;
   statuses: any[];
   loading: boolean = true;
   activityValues: number[] = [0, 100];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.get().then((data) => (this.listCaculator = data));
+  }
   showBasicDialog() {
     this.displayBasic = true;
   }
   exportExcel() {
     import('xlsx').then((xlsx) => {
-      const worksheet = xlsx.utils.json_to_sheet(this.listProgressKpi);
+      const worksheet = xlsx.utils.json_to_sheet(this.listCaculator);
       const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = xlsx.write(workbook, {
         bookType: 'xlsx',
@@ -74,35 +77,35 @@ export class SumDataComponent implements OnInit {
     this.service.formData = Object.assign({}, data);
   }
   insert(form: NgForm) {
-    this.service.post().subscribe(
-      (res) => {
-        this.reset(form);
-        this.service.get().then((data) => (this.listKPI = data));
-        this.toast.success('Thêm thành công!');
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    // this.service.post().subscribe(
+    //   (res) => {
+    //     this.reset(form);
+    //     this.service.get().then((data) => (this.listKPI = data));
+    //     this.toast.success('Thêm thành công!');
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
   }
   update(form1: NgForm) {
-    this.service.put().subscribe(
-      (res) => {
-        this.reset(form1);
-        this.service.get().then((data) => (this.listKPI = data));
-        this.toast.success('Sửa thành công!');
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    // this.service.put().subscribe(
+    //   (res) => {
+    //     this.reset(form1);
+    //     this.service.get().then((data) => (this.listKPI = data));
+    //     this.toast.success('Sửa thành công!');
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
   }
   delete(id: number) {
-    if (confirm('Bạn có muốn xóa dữ liệu không?')) {
-      this.service.delete(id).subscribe((res) => {
-        this.service.get().then((data) => (this.listKPI = data));
-        this.toast.error('Thông báo', 'Xóa thành công');
-      });
-    }
+    // if (confirm('Bạn có muốn xóa dữ liệu không?')) {
+    //   this.service.delete(id).subscribe((res) => {
+    //     this.service.get().then((data) => (this.listKPI = data));
+    //     this.toast.error('Thông báo', 'Xóa thành công');
+    //   });
+    // }
   }
 }

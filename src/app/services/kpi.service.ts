@@ -64,7 +64,7 @@ export class KpiService {
   }
   putProgress() {
     return this.http.put(
-      this.progressListUrl + '/sua/' + this.formDataProgress.idkpi,
+      this.progressListUrl + '/sua/' + this.formDataProgress.idprogress,
       this.formDataProgress
     );
   }

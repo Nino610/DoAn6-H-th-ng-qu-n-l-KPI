@@ -13,6 +13,7 @@ import { TargetListKpi } from '../../../models/targetList';
 import { TeamService } from 'src/app/services/team.service';
 import { Team } from 'src/app/models/team';
 import { ProgressListKpi } from 'src/app/models/progresslist';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-progresslistuser',
   templateUrl: './progresslistuser.component.html',
@@ -37,6 +38,7 @@ export class ProgresslistuserComponent implements OnInit {
   listEmployeeFromTeam: any;
   idgroupkpi: any;
   nameKpi: any;
+  idteam: any;
   idGroup: number;
   userDetail: any;
   activityValues: number[] = [0, 100];
@@ -46,6 +48,7 @@ export class ProgresslistuserComponent implements OnInit {
   ];
   constructor(
     public service: KpiService,
+    private datePipe: DatePipe,
     public groupkpiService: GroupkpiService,
     public teamService: TeamService,
     public employeeService: EmployeeService,
@@ -62,11 +65,15 @@ export class ProgresslistuserComponent implements OnInit {
         this.userDetail = res;
         this.service.formDataProgress.idemployee = this.userDetail.idemployee;
         this.service.formDataProgress.nameemployee = this.userDetail.name;
-        console.log(this.Complete);
+        this.service.formDataProgress.idteam = this.userDetail.idteam;
+        this.teamService.getTeamFormId(this.userDetail.idteam).then((data)=>(this.listTeam=data));
+        this.service.formDataProgress.nameteam = this.listTeam[0].nameteam;
+        console.log(this.listTeam[0].nameteam);
       },
       (err) => {
         console.log(err);
       }
+      
     );
     this.groupkpiService
       .get()
@@ -111,10 +118,15 @@ export class ProgresslistuserComponent implements OnInit {
     form.form.reset();
     this.service.formData = new Kpi();
   }
-  displayUpdateForm(data: Kpi) {
+  displayUpdateForm(data: ProgressListKpi) {
     this.displayBasicUpdate = true;
     // this.service.formData = data;
-    this.service.formData = Object.assign({}, data);
+    this.service.formDataProgress = Object.assign({}, data);
+     let start = this.datePipe.transform(this.service.formDataProgress.starttime, "yyyy-MM-dd");
+     this.service.formDataProgress.starttime=start;
+     let end = this.datePipe.transform(this.service.formDataProgress.endtime, "yyyy-MM-dd");
+     this.service.formDataProgress.endtime=end;
+     console.log(this.service.formDataProgress.starttime);
   }
   insert(form: NgForm) {
     this.service.postProgresst().subscribe(
@@ -131,6 +143,7 @@ export class ProgresslistuserComponent implements OnInit {
     );
   }
   update(form1: NgForm) {
+    console.log(this.service.formDataProgress.idprogress);
     this.service.putProgress().subscribe(
       (res) => {
         this.reset(form1);
@@ -160,24 +173,16 @@ export class ProgresslistuserComponent implements OnInit {
       this.listKpiFromGroupKpi = res;
       this.service.formDataProgress.idgroupkpi = this.obGr.idgroupkpi;
       this.service.formDataProgress.namegroupkpi = this.obGr.namegroupkpi;
-      this.service.formDataProgress.idkpi = this.obGr.idkpi;
+      // this.service.formDataProgress.idkpi = this.obGr.idkpi;
+
     });
-  }
-  getEmployee(event) {
-    this.ob = JSON.parse(event.target.value);
-    this.employeeService
-      .getEmployeeFormIdTeam(this.ob.idteam)
-      .subscribe((res) => {
-        this.listEmployeeFromTeam = res;
-      });
-    this.service.formDataProgress.idteam = this.ob.idteam;
-    this.service.formDataProgress.nameteam = this.ob.nameteam;
   }
   getKpiFromName(event) {
     // this.obKpi=JSON.parse(this.nameKpi);
     this.service.getKpiFromName(event.target.value).subscribe((res) => {
       this.listKPI = res;
       this.service.formDataProgress.idkpi = this.listKPI[0].idkpi;
+        console.log(this.listKPI[0]);
     });
   }
   getEmployeeFromName(event) {

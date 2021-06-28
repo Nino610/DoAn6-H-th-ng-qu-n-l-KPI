@@ -21,7 +21,7 @@
             <br>
             <div class="row">
                 <div class="card">
-                    <p-table #dt1 [value]="listProgressKpi" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idkpi','idgroupkpi','namekpi','quanty']">
+                    <p-table #dt1 [value]="listProgressKpi" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idkpi','idgroupkpi','namekpi','quanty','nameemployee']">
                         <ng-template pTemplate="header">
                             <div class="p-d-flex">
                                 <span class="p-input-icon-left p-ml-auto">
@@ -48,6 +48,9 @@
                                 </th>
                                 <th style="text-align: center;" pSortableColumn="quanty">Thời gian kết thúc
                                     <p-sortIcon field="quanty"></p-sortIcon>
+                                </th>
+                                <th style="text-align: center;" pSortableColumn="quanty">Nhân viên thực hiện
+                                    <p-sortIcon field="nameemployee"></p-sortIcon>
                                 </th>
                                 <th style="text-align: center;" pSortableColumn="quanty">Hoàn thành
                                     <p-sortIcon field="quanty"></p-sortIcon>

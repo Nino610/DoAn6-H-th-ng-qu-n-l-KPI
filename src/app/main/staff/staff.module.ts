@@ -28,6 +28,12 @@ import { HomeComponent } from 'src/app/shared/home/home.component';
 import { StaffComponent } from './staff.component';
 import { TargetlistuserComponent } from './targetlistuser/targetlistuser.component';
 import { ProgresslistuserComponent } from './progresslistuser/progresslistuser.component';
+import { GroupkpiuserComponent } from './groupkpiuser/groupkpiuser.component';
+import { KpiuserComponent } from './kpiuser/kpiuser.component';
+import { SumdatauserComponent } from './sumdatauser/sumdatauser.component';
+import { DatePipe } from '@angular/common';
+import { EmployeeuserComponent } from './employeeuser/employeeuser.component';
+import { TeamuserComponent } from './teamuser/teamuser.component';
 export const staffroutes: Routes = [
   {
     path: '',
@@ -44,8 +50,28 @@ export const staffroutes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'proFile',
-        component: UserprofileComponent,
+        path: 'user/groupKPI',
+        component: GroupkpiuserComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'user/KPI',
+        component: KpiuserComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'user/sumData',
+        component: SumdatauserComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'user/employees',
+        component: EmployeeuserComponent,
+        canActivate: [AuthGuard],
+      },
+       {
+        path: 'user/team',
+        component: TeamuserComponent,
         canActivate: [AuthGuard],
       },
     ],
@@ -54,7 +80,7 @@ export const staffroutes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [TargetlistuserComponent, ProgresslistuserComponent],
+  declarations: [TargetlistuserComponent, ProgresslistuserComponent, GroupkpiuserComponent, KpiuserComponent, SumdatauserComponent, EmployeeuserComponent, TeamuserComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -74,5 +100,6 @@ export const staffroutes: Routes = [
     HttpClientModule,
     RouterModule.forChild(staffroutes),
   ],
+  providers:[DatePipe],
 })
 export class StaffModule {}

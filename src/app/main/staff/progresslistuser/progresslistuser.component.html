@@ -68,7 +68,7 @@
                         <ng-template pTemplate="body" let-data>
                             <tr>
                                 <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
-                                <td style="text-align: center;" field="idkpi">{{ data.namegroupkpi }}</td>
+                                <td style="text-align: center;" field="namegroupkpi">{{ data.namegroupkpi }}</td>
                                 <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
                                 <td style="text-align: center;" field="nameemployee">{{ data.nameemployee }}</td>
                                 <td style="text-align: center;" field="nameteam">{{ data.nameteam }}</td>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên nhóm chỉ tiêu
-                        <select style="width: 192px;
+                        <select style="width: 230px;
               height: 38px;" name="namegroupkpi" (change)="getKpi($event)">
                 <option  name="namegroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group|json">{{ group.namegroupkpi }}</option>
                   </select>
@@ -119,9 +119,7 @@
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên Team (đội/nhóm)
-                        <select style="width: 192px; height: 38px;" name="nameteam" (change)="getEmployee($event)">
-               <option  name="nameteam" *ngFor="let team of teamService.listTeam" [value]="team|json">{{ team.nameteam }}</option>
-             </select>
+                        <input style="width: 150px;" disabled name="nameteam" #nameteam="ngModel" [(ngModel)]="service.formDataProgress.nameteam">
                     </div>
                     <div class="col-md-5 mb-3 ">
                         Tên nhân viên
@@ -151,21 +149,22 @@
                 <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
             </div>
         </form>
-    </p-dialog>
+    </p-dialog> 
     <!-- form Sửa -->
-    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]   ="10000">
+        <form novalidate #form1="ngForm" (submit)="onSubmitUpdate(form)">
             <input type="hidden" name="idprogress" [value]="service.formDataProgress.idprogress">
             <div class="form">
-                Tên quản lý giao chỉ tiêu:
+                Mã nhân viên thực hiện chỉ tiêu:
+                <input disabled name="idemployee" [value]="service.formDataProgress.idemployee">
                 <div class="row">
                     <div class="col-md-3 mb-3 ">
                         Mã nhóm chỉ tiêu
-                        <input style="width: 120px;" disabled name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataProgress.idgroupkpi">
+                        <input style="width: 150px;" disabled name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formDataProgress.idgroupkpi">
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên nhóm chỉ tiêu
-                        <select style="width: 192px;
+                        <select style="width: 230px;
               height: 38px;" name="namegroupkpi" (change)="getKpi($event)">
                 <option  name="namegroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group|json">{{ group.namegroupkpi }}</option>
                   </select>
@@ -183,22 +182,20 @@
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Tên Team (đội/nhóm)
-                        <select style="width: 192px; height: 38px;" name="nameteam" (change)="getEmployee($event)">
-               <option  name="nameteam" *ngFor="let team of teamService.listTeam" [value]="team|json">{{ team.nameteam }}</option>
-             </select>
+                        <input style="width: 120px;" disabled name="nameteam" #nameteam="ngModel" [(ngModel)]="service.formDataProgress.nameteam">
                     </div>
                     <div class="col-md-5 mb-3 ">
                         Tên nhân viên
-                        <select style="width: 280px;;
-              height: 38px;" name="nameemployee" #nameemployee="ngModel" [(ngModel)]="service.formDataProgress.nameemployee" (change)="getEmployeeFromName($event)">
-               <option  name="name" *ngFor="let emp of listEmployeeFromTeam" [value]="emp.name">{{ emp.name }}</option>
-             </select>
+                        <input disabled name="namemanager" [value]="service.formDataProgress.nameemployee">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 mb-3 ">
-                        Số lượng
-                        <input style="width:120px" class="form-control" name="complete" #complete="ngModel" [(ngModel)]="service.formDataProgress.complete" type="number">
+                        Tiến độ
+                        <select style="width: 150px;
+                        height: 38px;" name="complete" #complete="ngModel" [(ngModel)]="service.formDataProgress.complete">
+                          <option  name="complete" *ngFor="let comp of Complete" [value]="comp.value">{{ comp.name }}</option>
+                    </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
                         Thời gian bắt đầu
@@ -206,7 +203,7 @@
                     </div>
                     <div class="col-md-5 mb-3 ">
                         Thời gian kết thúc
-                        <input class="form-control" type="date" name="endtime" #endtime="ngModel" [(ngModel)]="service.formDataProgress.endtime">
+                        <input class="form-control" type="date"  placeholder="dd-mm-yyyy" name="endtime" #endtime="ngModel" [(ngModel)]="service.formDataProgress.endtime">
                     </div>
                 </div>
             </div>

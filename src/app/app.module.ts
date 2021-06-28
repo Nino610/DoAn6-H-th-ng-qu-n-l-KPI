@@ -24,6 +24,8 @@ import { LineComponent } from './shared/chart/line/line.component';
 import { HomeComponent } from './shared/home/home.component';
 import { ForbiddenComponent } from './shared/forbidden/forbidden.component';
 import { TargetlistuserComponent } from './main/staff/targetlistuser/targetlistuser.component';
+import { UserprofileComponent } from './shared/userprofile/userprofile.component';
+import { DatePipe } from '@angular/common';
 const routes: Routes = [
   {
     path: 'login',
@@ -42,6 +44,10 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'proFile',
+    component: UserprofileComponent,
+  },
+  {
     path: '**',
     component: UnpageComponent,
   },
@@ -54,6 +60,7 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     UnpageComponent,
+    UserprofileComponent,
     RegisterComponent,
     AdminComponent,
     StaffComponent,
@@ -70,7 +77,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

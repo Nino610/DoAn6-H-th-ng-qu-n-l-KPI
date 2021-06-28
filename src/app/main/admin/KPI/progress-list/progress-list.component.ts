@@ -91,7 +91,7 @@ export class ProgressListComponent implements OnInit {
     );
   }
   update(form1: NgForm) {
-    this.service.put().subscribe(
+    this.service.postProgresst().subscribe(
       (res) => {
         this.reset(form1);
         this.service.get().then((data) => (this.listKPI = data));

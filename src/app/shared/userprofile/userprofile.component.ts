@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { NgForm } from '@angular/forms';
 import { Employee } from '../../models/employee';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
@@ -14,6 +14,7 @@ import { Employee } from '../../models/employee';
 })
 export class UserprofileComponent implements OnInit {
   constructor(
+    private datePipe: DatePipe,
     public service: LoginService,
     public ProfileService: EmployeeService,
     private toast: ToastrService
@@ -30,6 +31,8 @@ export class UserprofileComponent implements OnInit {
     this.service.getUserProfile().subscribe(
       (res) => {
         this.userDetail = res;
+        let ngay = this.datePipe.transform(this.userDetail.birthday, "yyyy-MM-dd");
+        this.userDetail.birthday=ngay;
       },
       (err) => {
         console.log(err);
@@ -40,6 +43,7 @@ export class UserprofileComponent implements OnInit {
     this.Update();
   }
   Update() {
+    
     this.submitted = true;
     let tmp = {
       idemployee: this.userDetail.idemployee,

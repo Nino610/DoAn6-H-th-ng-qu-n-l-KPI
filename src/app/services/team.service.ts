@@ -30,6 +30,10 @@ export class TeamService {
       .toPromise()
       .then((res) => (this.listTeam = res as Team[]));
   }
+  getTeamFormId(id: number)
+  {
+    return this.http.get(this.teamUrl + '/' + 1).toPromise().then((res)=>(this.listTeam = res as Team[]));
+  }
   getGroupKpi() {
     return this.http
       .get(this.GroupKpiUrl)

@@ -71,12 +71,6 @@ export const adminroutes: Routes = [
         path: 'admin/KPI',
         component: KPIComponent,
       },
-
-      {
-        path: 'proFile',
-        component: UserprofileComponent,
-        canActivate: [AuthGuard],
-      },
       {
         path: 'chart/line',
         component: LineComponent,
@@ -98,7 +92,6 @@ export const adminroutes: Routes = [
     SumDataComponent,
     LineComponent,
     PieComponent,
-    UserprofileComponent,
     KPIComponent,
     GroupKPIComponent,
     TargetListComponent,
