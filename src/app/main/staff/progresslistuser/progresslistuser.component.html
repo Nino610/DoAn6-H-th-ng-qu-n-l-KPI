@@ -46,9 +46,6 @@
                                 <th style="text-align: center;" pSortableColumn="namekpi">Chỉ tiêu giao
                                     <p-sortIcon field="namekpi"></p-sortIcon>
                                 </th>
-                                <th style="text-align: center;" pSortableColumn="nameemployee">Nhân viên thực hiện
-                                    <p-sortIcon field="nameemployee"></p-sortIcon>
-                                </th>
                                 <th style="text-align: center;" pSortableColumn="nameteam">Team
                                     <p-sortIcon field="nameteam"></p-sortIcon>
                                 </th>
@@ -70,12 +67,11 @@
                                 <td style="text-align: center;" field="idkpi">{{ data.idkpi }}</td>
                                 <td style="text-align: center;" field="namegroupkpi">{{ data.namegroupkpi }}</td>
                                 <td style="text-align: center;" field="namekpi">{{ data.namekpi }}</td>
-                                <td style="text-align: center;" field="nameemployee">{{ data.nameemployee }}</td>
                                 <td style="text-align: center;" field="nameteam">{{ data.nameteam }}</td>
                                 <td style="text-align: center;" field="starttime">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
                                 <td style="text-align: center;" field="endtime">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
-                                <td *ngIf="data.complete" style="text-align: center;" field="complete">Hoàn thành</td>
-                                <td *ngIf="!data.complete" style="text-align: center;" field="complete">Chưa hoàn thành</td>
+                                <td *ngIf="data.complete==0" style="text-align: center;" field="complete">Hoàn thành</td>
+                                <td *ngIf="data.complete==1" style="text-align: center;" field="complete">Chưa hoàn thành</td>
                                 <td>
                                     <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
                                     <button style="margin-right: 5px; width:30px" (click)="delete(data.idprogress)" pButton type="button" icon="pi pi-trash"></button>
@@ -149,9 +145,9 @@
                 <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
             </div>
         </form>
-    </p-dialog> 
+    </p-dialog>
     <!-- form Sửa -->
-    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]   ="10000">
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form novalidate #form1="ngForm" (submit)="onSubmitUpdate(form)">
             <input type="hidden" name="idprogress" [value]="service.formDataProgress.idprogress">
             <div class="form">
@@ -203,7 +199,7 @@
                     </div>
                     <div class="col-md-5 mb-3 ">
                         Thời gian kết thúc
-                        <input class="form-control" type="date"  placeholder="dd-mm-yyyy" name="endtime" #endtime="ngModel" [(ngModel)]="service.formDataProgress.endtime">
+                        <input class="form-control" type="date" placeholder="dd-mm-yyyy" name="endtime" #endtime="ngModel" [(ngModel)]="service.formDataProgress.endtime">
                     </div>
                 </div>
             </div>

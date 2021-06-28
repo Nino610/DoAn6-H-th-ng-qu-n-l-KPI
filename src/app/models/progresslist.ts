@@ -8,7 +8,7 @@ export class ProgressListKpi {
   nameemployee: string = '';
   idteam: number;
   nameteam: string = '';
-  complete: number;
+  complete: string = '';
   starttime: string = '';
   endtime: string = '';
 }

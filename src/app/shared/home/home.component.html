@@ -28,8 +28,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
-
+                                <h1>{{ sumKpi }}</h1>
                                 <p>Số lượng chỉ tiêu</p>
                             </div>
                             <div class="icon">
@@ -43,7 +42,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{ PercentOfDone }}<sup style="font-size: 20px">%</sup></h3>
                                 <p>Phần trăm hoàn thành chỉ tiêu </p>
                             </div>
                             <div class="icon">
@@ -57,7 +56,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>80</h3>
+                                <h3>{{ sumEmployee }}</h3>
 
                                 <p>Số nhân viên trong công ty</p>
                             </div>
@@ -72,7 +71,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>25</h3>
+                                <h3>{{ kpiofmonth }}</h3>
 
                                 <p>Chỉ tiêu giao trong tháng</p>
                             </div>
@@ -154,7 +153,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Số Team trong công ty</span>
-                                <span class="info-box-number">8</span>
+                                <span class="info-box-number">{{ sumTeam }}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -174,7 +173,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Loại chỉ tiêu</span>
-                                <span class="info-box-number">7</span>
+                                <span class="info-box-number">{{ sumgroupkpi }}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -184,7 +183,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Chỉ tiêu đang thực hiện </span>
-                                <span class="info-box-number">16</span>
+                                <span class="info-box-number">{{ sumKpiWorking }}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>

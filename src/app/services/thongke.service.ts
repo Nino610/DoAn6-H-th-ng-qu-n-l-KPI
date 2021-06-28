@@ -26,4 +26,25 @@ export class ThongKeService {
       .toPromise()
       .then((res) => (this.listCaculator = res as Caculator[]));
   }
+  getsumKpi() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumKpi');
+  }
+  getsumEmployee() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumEmployee');
+  }
+  getsumTeam() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumTeam');
+  }
+  getsumGroupkpi() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumGroupkpi');
+  }
+  getsumKpiWorking() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumKpiWorking');
+  }
+  getsumkpiOfMonth() {
+    return this.http.get(this.thongkeUrl + '/' + 'sumkpiOfMonth');
+  }
+  getPercentOfDone() {
+    return this.http.get(this.thongkeUrl + '/' + 'percentOfDone');
+  }
 }

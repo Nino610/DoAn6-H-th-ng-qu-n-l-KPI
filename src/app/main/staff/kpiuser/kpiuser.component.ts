@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Kpi } from '../../../../models/kpi';
+import { Kpi } from '../../../models/kpi';
+import { GroupKPI } from '../../../models/groupkpi';
 import { ToastrService } from 'ngx-toastr';
 import { GroupkpiService } from 'src/app/services/groupkpi.service';
 import { NgForm } from '@angular/forms';
@@ -9,11 +10,10 @@ import { KpiService } from 'src/app/services/kpi.service';
 @Component({
   selector: 'app-kpiuser',
   templateUrl: './kpiuser.component.html',
-  styleUrls: ['./kpiuser.component.css']
+  styleUrls: ['./kpiuser.component.css'],
 })
 export class KpiuserComponent implements OnInit {
-
-   listKPI: Kpi[];
+  listKPI: Kpi[];
   listGroupKpi: GroupKPI[];
   basicOptions: any;
   displayBasic: boolean = false;
@@ -29,7 +29,7 @@ export class KpiuserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-     this.service.get().then((data) => (this.listKPI = data));
+    this.service.get().then((data) => (this.listKPI = data));
   }
   exportExcel() {
     import('xlsx').then((xlsx) => {
@@ -57,5 +57,4 @@ export class KpiuserComponent implements OnInit {
       );
     });
   }
-
 }

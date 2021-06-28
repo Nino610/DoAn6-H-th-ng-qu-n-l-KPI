@@ -43,8 +43,8 @@ export class ProgresslistuserComponent implements OnInit {
   userDetail: any;
   activityValues: number[] = [0, 100];
   Complete: any[] = [
-    { name: 'Hoàn thành', value: 1 },
-    { name: 'Chưa hoàn thành', value: 0 },
+    { name: 'Hoàn thành', value: '0' },
+    { name: 'Chưa hoàn thành', value: '1' },
   ];
   constructor(
     public service: KpiService,
@@ -66,14 +66,15 @@ export class ProgresslistuserComponent implements OnInit {
         this.service.formDataProgress.idemployee = this.userDetail.idemployee;
         this.service.formDataProgress.nameemployee = this.userDetail.name;
         this.service.formDataProgress.idteam = this.userDetail.idteam;
-        this.teamService.getTeamFormId(this.userDetail.idteam).then((data)=>(this.listTeam=data));
+        this.teamService
+          .getTeamFormId(this.userDetail.idteam)
+          .then((data) => (this.listTeam = data));
         this.service.formDataProgress.nameteam = this.listTeam[0].nameteam;
         console.log(this.listTeam[0].nameteam);
       },
       (err) => {
         console.log(err);
       }
-      
     );
     this.groupkpiService
       .get()
@@ -122,11 +123,17 @@ export class ProgresslistuserComponent implements OnInit {
     this.displayBasicUpdate = true;
     // this.service.formData = data;
     this.service.formDataProgress = Object.assign({}, data);
-     let start = this.datePipe.transform(this.service.formDataProgress.starttime, "yyyy-MM-dd");
-     this.service.formDataProgress.starttime=start;
-     let end = this.datePipe.transform(this.service.formDataProgress.endtime, "yyyy-MM-dd");
-     this.service.formDataProgress.endtime=end;
-     console.log(this.service.formDataProgress.starttime);
+    let start = this.datePipe.transform(
+      this.service.formDataProgress.starttime,
+      'yyyy-MM-dd'
+    );
+    this.service.formDataProgress.starttime = start;
+    let end = this.datePipe.transform(
+      this.service.formDataProgress.endtime,
+      'yyyy-MM-dd'
+    );
+    this.service.formDataProgress.endtime = end;
+    console.log(this.service.formDataProgress.starttime);
   }
   insert(form: NgForm) {
     this.service.postProgresst().subscribe(
@@ -174,7 +181,6 @@ export class ProgresslistuserComponent implements OnInit {
       this.service.formDataProgress.idgroupkpi = this.obGr.idgroupkpi;
       this.service.formDataProgress.namegroupkpi = this.obGr.namegroupkpi;
       // this.service.formDataProgress.idkpi = this.obGr.idkpi;
-
     });
   }
   getKpiFromName(event) {
@@ -182,7 +188,7 @@ export class ProgresslistuserComponent implements OnInit {
     this.service.getKpiFromName(event.target.value).subscribe((res) => {
       this.listKPI = res;
       this.service.formDataProgress.idkpi = this.listKPI[0].idkpi;
-        console.log(this.listKPI[0]);
+      console.log(this.listKPI[0]);
     });
   }
   getEmployeeFromName(event) {
