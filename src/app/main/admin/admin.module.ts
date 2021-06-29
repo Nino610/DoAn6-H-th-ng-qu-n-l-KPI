@@ -34,6 +34,7 @@ import { UserprofileComponent } from '../../shared/userprofile/userprofile.compo
 import { AuthGuard } from '../../auth/auth.guard';
 import { HomeComponent } from 'src/app/shared/home/home.component';
 import { KPIComponent } from './KPI/kpi/kpi.component';
+import { BieudosongComponent } from 'src/app/shared/chart/bieudosong/bieudosong.component';
 export const adminroutes: Routes = [
   {
     path: '',
@@ -72,12 +73,16 @@ export const adminroutes: Routes = [
         component: KPIComponent,
       },
       {
-        path: 'chart/line',
+        path: 'chart/bar',
         component: LineComponent,
       },
       {
         path: 'chart/pie',
         component: PieComponent,
+      },
+      {
+        path: 'chart/line',
+        component: BieudosongComponent,
       },
     ],
     canActivate: [AuthGuard],
@@ -92,6 +97,7 @@ export const adminroutes: Routes = [
     SumDataComponent,
     LineComponent,
     PieComponent,
+    BieudosongComponent,
     KPIComponent,
     GroupKPIComponent,
     TargetListComponent,

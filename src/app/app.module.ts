@@ -26,10 +26,15 @@ import { ForbiddenComponent } from './shared/forbidden/forbidden.component';
 import { TargetlistuserComponent } from './main/staff/targetlistuser/targetlistuser.component';
 import { UserprofileComponent } from './shared/userprofile/userprofile.component';
 import { DatePipe } from '@angular/common';
+import { BieudosongComponent } from './shared/chart/bieudosong/bieudosong.component';
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'chart/line',
+    component: BieudosongComponent,
   },
   {
     path: 'register',

@@ -7,26 +7,24 @@ import { Employee } from '../../../models/employee';
 import { Router } from '@angular/router';
 import { ManagerService } from 'src/app/services/manager.service';
 import { ThongKeService } from 'src/app/services/thongke.service';
+import { TargetListKpi } from 'src/app/models/targetlist';
+
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.css'],
+  selector: 'app-bieudosong',
+  templateUrl: './bieudosong.component.html',
+  styleUrls: ['./bieudosong.component.css'],
 })
-export class LineComponent implements OnInit {
-  listEmployee: Employee[];
-  listTeam: Team[];
+export class BieudosongComponent implements OnInit {
   basicData: any;
-  idteam: any;
   listTargetKpi: any;
-  basicOptions: any;
   constructor(
     public service: ThongKeService,
     public managersv: ManagerService,
     private toast: ToastrService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    this.service.get().then((data) => (this.listTargetKpi = data));
     this.service
       .getLineChart()
       .toPromise()
@@ -60,11 +58,15 @@ export class LineComponent implements OnInit {
       datasets: [
         {
           label: 'Chỉ tiêu giao',
-          backgroundColor: '#42A5F5',
+          // data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: '#42A5F5',
         },
         {
           label: 'Chỉ tiêu thực hiện',
-          backgroundColor: '#FFA726',
+          // data: [28, 48, 40, 19, 86, 27, 90],
+          fill: false,
+          borderColor: '#FFA726',
         },
       ],
     };

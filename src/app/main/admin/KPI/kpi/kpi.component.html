@@ -81,7 +81,7 @@
                     <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
                         <select style="width: 192px;
                     height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
-                      <option  name="idgroupkpi" *ngFor="let group of groupkpiService.listGroup" [value]="group.idgroupkpi">{{ group.namegroupkpi }}</option>
+                      <option  name="idgroupkpi" *ngFor="let group of listTeam" [value]="group.value">{{ group.name }}</option>
                 </select>
                     </div>
                     <div class="col-md-4 mb-3 ">
@@ -109,7 +109,7 @@
                     <div class="col-md-4 mb-3 ">Mã nhóm chỉ tiêu
                         <select style="width: 192px;
                       height: 38px;" name="idgroupkpi" #idgroupkpi="ngModel" [(ngModel)]="service.formData.idgroupkpi">
-                        <option  name="idgroupkpi" *ngFor="let team of service.listGroupKpi"  [value]="team.idgroupkpi">{{ team.namegroupkpi }} {{ team.idgroupkpi }}</option>
+                        <option  name="idgroupkpi" *ngFor="let group of listTeam" [value]="group.value">{{ group.name }}</option>
                   </select>
                     </div>
                     <div class="col-md-4 mb-3 ">

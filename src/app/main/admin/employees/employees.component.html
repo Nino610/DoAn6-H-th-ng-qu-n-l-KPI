@@ -101,8 +101,10 @@
             <div class="form">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        Mã nhân viên
-                        <input class="form-control" type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee"></div>
+                        Chức vụ
+                        <select name="permission" #permission="ngModel" [(ngModel)]="service.formData.permission" style="width: 190px; height: 38px;">
+                          <option name="permission" #permission="ngModel" [(ngModel)]="service.formData.permission" class="form-control "  *ngFor="let a of Permission"  [ngValue]="a.value" >{{ a.name }}</option>
+                    </select></div>
                     <div class="col-md-4 mb-3 ">Mã Team
                         <select style="width: 192px;
                       height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">
@@ -157,8 +159,10 @@
             <div class="form">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        Mã nhân viên
-                        <input class="form-control" type="text" name="idemployee" #idemployee="ngModel" [(ngModel)]="service.formData.idemployee"></div>
+                        Chức vụ
+                        <select name="permission" #permission="ngModel" [(ngModel)]="service.formData.permission" style="width: 190px; height: 38px;">
+                      <option name="permission" #permission="ngModel" [(ngModel)]="service.formData.permission" class="form-control "  *ngFor="let a of Permission"  [ngValue]="a.value" >{{ a.name }}</option>
+                </select></div>
                     <div class="col-md-4 mb-3 ">Mã Team
                         <select style="width: 192px;
                       height: 38px;" name="idteam" #idteam="ngModel" [(ngModel)]="service.formData.idteam">

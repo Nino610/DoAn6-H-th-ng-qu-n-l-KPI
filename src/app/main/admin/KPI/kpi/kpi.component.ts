@@ -20,6 +20,13 @@ export class KPIComponent implements OnInit {
   statuses: any[];
   loading: boolean = true;
   activityValues: number[] = [0, 100];
+  listTeam: any[] = [
+    { name: 'Lập trình web', value: 1 },
+    { name: 'Lập trình Mobile', value: 2 },
+    { name: 'Lập trình Game', value: 3 },
+    { name: 'Kiểm thử', value: 4 },
+    { name: 'Hành chính', value: 5 },
+  ];
   constructor(
     public service: KpiService,
     public groupkpiService: GroupkpiService,

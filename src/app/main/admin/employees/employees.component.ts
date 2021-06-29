@@ -14,6 +14,10 @@ import { ManagerService } from 'src/app/services/manager.service';
 export class EmployeesComponent implements OnInit {
   listEmployee: Employee[];
   listTeam: Team[];
+  Permission: any[] = [
+    { name: 'Quản lý', value: '1' },
+    { name: 'Nhân viên', value: '2' },
+  ];
   Gender: any[] = [
     { name: 'Nam', value: 'Nam' },
     { name: 'Nữ', value: 'Nữ' },

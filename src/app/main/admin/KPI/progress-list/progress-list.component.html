@@ -16,7 +16,6 @@
     </section>
     <section class="content">
         <div class="container-fluid">
-            <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Thêm"></p-button>
             <br>
             <br>
             <div class="row">
@@ -65,10 +64,10 @@
                                 <td style="text-align: center;" field="quanty">{{ data.starttime|date: 'dd/MM/yyyy' }}</td>
                                 <td style="text-align: center;" field="quanty">{{ data.endtime|date: 'dd/MM/yyyy' }}</td>
                                 <td style="text-align: center;" field="namekpi">{{ data.nameemployee }}</td>
-                                <td *ngIf="data.complete" style="text-align: center;" field="complete">Hoàn thành</td>
-                                <td *ngIf="!data.complete" style="text-align: center;" field="complete">Chưa hoàn thành</td>
+                                <td *ngIf="data.complete==0" style="text-align: center;" field="complete">Hoàn thành</td>
+                                <td *ngIf="data.complete==1" style="text-align: center;" field="complete">Chưa hoàn thành</td>
                                 <td>
-                                    <button (click)=" displayUpdateForm(data) " pButton type="button " style="margin-right: 5px; width:30px " icon="pi pi-pencil "></button>
+                                    <!-- <button (click)=" displayUpdateForm(data) " pButton type="button " style="margin-right: 5px; width:30px " icon="pi pi-pencil "></button> -->
                                     <button style="margin-right: 5px; width:30px " (click)="delete(data.idkpi) " pButton type="button " icon="pi pi-trash "></button>
                                 </td>
                             </tr>

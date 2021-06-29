@@ -12,6 +12,8 @@ export class ThongKeService {
   readonly caculatorUrl = 'https://localhost:44393/api/Caculators';
   readonly thongkeUrl = 'https://localhost:44393/api/thongke';
   listCaculator: Caculator[];
+  id = 6;
+  month = 6;
   formData: Kpi = new Kpi();
   constructor(private http: HttpClient) {}
 
@@ -19,6 +21,12 @@ export class ThongKeService {
     return this.http.get(
       this.thongkeUrl + '/PersentOfKpi/' + this.formData.idkpi
     );
+  }
+  getLineChart() {
+    return this.http.get(this.thongkeUrl + '/sumkpioftimeTarget');
+  }
+  getLineChart2() {
+    return this.http.get(this.thongkeUrl + '/sumkpioftimeprogress');
   }
   get() {
     return this.http
