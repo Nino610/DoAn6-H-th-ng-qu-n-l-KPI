@@ -30,11 +30,12 @@ import { ChartModule } from 'primeng/chart';
 import { FileUploadModule } from 'primeng/fileupload';
 import { LineComponent } from '../../shared/chart/line/line.component';
 import { PieComponent } from '../../shared/chart/pie/pie.component';
+import { BieudosongComponent } from '../../shared/chart/bieudosong/bieudosong.component';
 import { UserprofileComponent } from '../../shared/userprofile/userprofile.component';
 import { AuthGuard } from '../../auth/auth.guard';
 import { HomeComponent } from 'src/app/shared/home/home.component';
 import { KPIComponent } from './KPI/kpi/kpi.component';
-import { BieudosongComponent } from 'src/app/shared/chart/bieudosong/bieudosong.component';
+
 export const adminroutes: Routes = [
   {
     path: '',
@@ -95,13 +96,13 @@ export const adminroutes: Routes = [
     EmployeesComponent,
     ManagerComponent,
     SumDataComponent,
-    LineComponent,
-    PieComponent,
-    BieudosongComponent,
     KPIComponent,
     GroupKPIComponent,
     TargetListComponent,
     ProgressListComponent,
+    BieudosongComponent,
+    PieComponent,
+    LineComponent,
   ],
   imports: [
     CommonModule,

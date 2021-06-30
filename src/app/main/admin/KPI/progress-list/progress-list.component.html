@@ -68,7 +68,8 @@
                                 <td *ngIf="data.complete==1" style="text-align: center;" field="complete">Chưa hoàn thành</td>
                                 <td>
                                     <!-- <button (click)=" displayUpdateForm(data) " pButton type="button " style="margin-right: 5px; width:30px " icon="pi pi-pencil "></button> -->
-                                    <button style="margin-right: 5px; width:30px " (click)="delete(data.idkpi) " pButton type="button " icon="pi pi-trash "></button>
+                                    <button *ngIf="data.complete==0" style="margin-right: 5px; width:30px " (click)="delete(data.idkpi) " pButton type="button " icon="pi pi-trash "></button>
+
                                 </td>
                             </tr>
                         </ng-template>

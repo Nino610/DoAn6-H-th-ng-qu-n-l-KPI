@@ -20,13 +20,15 @@ import { StaffModule } from './main/staff/staff.module';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth/auth.guard';
+import { ChartModule } from 'primeng/chart';
 import { LineComponent } from './shared/chart/line/line.component';
 import { HomeComponent } from './shared/home/home.component';
 import { ForbiddenComponent } from './shared/forbidden/forbidden.component';
 import { TargetlistuserComponent } from './main/staff/targetlistuser/targetlistuser.component';
 import { UserprofileComponent } from './shared/userprofile/userprofile.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BieudosongComponent } from './shared/chart/bieudosong/bieudosong.component';
+import { PieComponent } from './shared/chart/pie/pie.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -52,6 +54,7 @@ const routes: Routes = [
     path: 'proFile',
     component: UserprofileComponent,
   },
+
   {
     path: '**',
     component: UnpageComponent,
@@ -73,15 +76,19 @@ const routes: Routes = [
     ForbiddenComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     AdminModule,
     StaffModule,
+    ChartModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    // HttpClientInMemoryWebApiModule.forRoot(),
   ],
+
   providers: [DatePipe],
   bootstrap: [AppComponent],
 })

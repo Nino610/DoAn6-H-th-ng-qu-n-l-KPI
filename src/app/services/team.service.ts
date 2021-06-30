@@ -24,15 +24,23 @@ export class TeamService {
       .toPromise()
       .then((res) => (this.listTeam = res as Team[]));
   }
+  postTeam() {
+    return this.http.post(this.teamUrl + '/them', this.formData);
+  }
   getTeam() {
     return this.http
       .get(this.teamUrl)
       .toPromise()
       .then((res) => (this.listTeam = res as Team[]));
   }
-  getTeamFormId(id: number)
-  {
-    return this.http.get(this.teamUrl + '/' + 1).toPromise().then((res)=>(this.listTeam = res as Team[]));
+  deleteTeam(id: String) {
+    return this.http.delete(this.teamUrl + '/xoa/' + id);
+  }
+  getTeamFormId(id: number) {
+    return this.http
+      .get(this.teamUrl + '/' + 1)
+      .toPromise()
+      .then((res) => (this.listTeam = res as Team[]));
   }
   getGroupKpi() {
     return this.http
@@ -46,8 +54,13 @@ export class TeamService {
       this.formData
     );
   }
+  putTeam() {
+    return this.http.put(
+      this.teamUrl + '/sua/' + this.formData.idteam,
+      this.formData
+    );
+  }
   delete(id: String) {
     return this.http.delete(this.baseUrl + '/xoa/' + id);
   }
- 
 }

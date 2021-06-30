@@ -1,1 +1,113 @@
-<p>department works!</p>
+<div class="container-fluid">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thông tin Team</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Thông tin Team</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Thêm"></p-button>
+            <br>
+            <br>
+            <div class="row">
+                <div class="card">
+                    <p-table #dt1 [value]="listTeam" dataKey="id" [paginator]="true" [rows]="5" [globalFilterFields]="['idemployee','permission','name','birthday','gender','address','email','phonenumber']">
+                        <ng-template pTemplate="header">
+                            <div class="p-d-flex">
+                                <span class="p-input-icon-left p-ml-auto">
+                                      <i class="pi pi-search"></i>
+                                      <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Tìm kiếm thông tin" />
+                                  </span>
+                                <br/>
+                                <div class="export" style="display:flex;margin-top: 10px;">
+                                    <button type="button" title="Xuất Word" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-o" (click)="dt1.exportCSV()" class="p-mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                                    <button type="button" title="Xuất Excel" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                                    <button type="button" style="width: 50px; height: 50px;" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                                </div>
+                            </div>
+
+                            <tr>
+                                <th pSortableColumn="idemployee">Mã Team
+                                    <p-sortIcon field="idemployee"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="name">Tên Team
+                                    <p-sortIcon field="name"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="birthday">Số lượng
+                                    <p-sortIcon field="birthday"></p-sortIcon>
+                                </th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-data>
+                            <tr>
+                                <td field="idemployee">{{ data.idteam }}</td>
+                                <td field="name">{{ data.nameteam }}</td>
+                                <td field="name">{{ data.quanty }}</td>
+                                <td>
+                                    <button (click)="displayUpdateForm(data)" pButton type="button" style="margin-right: 5px; width:30px" icon="pi pi-pencil"></button>
+                                    <button style="margin-right: 5px; width:30px" (click)="delete(data.idteam)" pButton type="button" icon="pi pi-trash"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- thêm -->
+    <p-dialog header="Nhập thông tin" [(visible)]="displayBasic" [baseZIndex]="10000">
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)">
+            <input type="hidden" name="idmanager" [value]="service.formData.idteam">
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">
+                        Tên Team (đội/nhóm)
+                        <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.nameteam" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Số lượng
+                        <input style="height:40px" type="number" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty">
+                    </div>
+                </div>
+            </div>
+            <div class=" form-group ">
+                <button class="btn btn-primary " type="submit " [disabled]="form.invalid ">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
+            </div>
+        </form>
+
+    </p-dialog>
+    <!-- sửa -->
+    <p-dialog header="Thông tin sửa" [(visible)]="displayBasicUpdate" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form novalidate #form1="ngForm" autocomplete="off" (submit)="onSubmitUpdate(form1)">
+            <input type="hidden" name="idmanager" [value]="service.formData.idteam">
+            <div class="form">
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">
+                        Tên Team (đội/nhóm)
+                        <input class="form-control" name="name" #name="ngModel" [(ngModel)]="service.formData.nameteam" type="text ">
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        Số lượng
+                        <input style="height:40px" type="number" name="quanty" #quanty="ngModel" [(ngModel)]="service.formData.quanty">
+                    </div>
+                </div>
+            </div>
+            <div class=" form-group ">
+                <button class="btn btn-primary " type="submit " [disabled]="form.invalid ">Đồng ý</button>
+                <p-button icon="pi pi-times " styleClass="p-button-text " (click)="displayBasic=false " label="No "></p-button>
+            </div>
+        </form>
+    </p-dialog>
+</div>
